@@ -12,6 +12,7 @@ logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 games_url = "https://api.twitch.tv/helix/games/top?first=10"
+streams_url = "https://api.twitch.tv/helix/streams?first=10"
 follow_url = "https://api.twitch.tv/helix/users/follows?from_id="
 
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
