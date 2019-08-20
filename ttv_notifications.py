@@ -12,6 +12,11 @@ logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 app_id = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_id']
-app_secret = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_secret']
 
-print(app_id, app_secret)
+print(app_id)
+
+games_url = "https://api.twitch.tv/helix/games/top?first=10"
+follow_url = "https://api.twitch.tv/helix/users/follows?from_id="
+
+header = {"Client-ID": "%s" % app_id}
+print(header)
