@@ -34,7 +34,11 @@ def loadClientSecret():
 
 @app.route('/')
 def splashPage():
-    return '<body>Hello World</body>'
+    client_id_header = loadClientID()
+    response_streams = requests.get(streams_url, headers=client_id_header)
+    response_games = requests.get(games_url, headers=client_id_header)
+    return "%s\n%s" % (response_streams.json(), response_games.json())
 
 if __name__ == '__main__':
+    app.debug = True
     app.run(host='0.0.0.0', port=80)
