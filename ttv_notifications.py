@@ -6,10 +6,16 @@
 
 import logging
 import json
+from flask import Flask, render_template
+from flask import session as login_session
 import requests
 
 logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
+
+app = Flask(__name__)
+
+APPLICATION_NAME = 'TTV_Notifications'
 
 games_url = "https://api.twitch.tv/helix/games/top?first=10"
 streams_url = "https://api.twitch.tv/helix/streams?first=10"
@@ -26,3 +32,9 @@ def loadClientSecret():
     secret = {"Client-Secret": "%s" % app_secret}
     return secret
 
+@app.route('/')
+def splashPage():
+    return '<body>Hello World</body>'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
