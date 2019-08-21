@@ -6,6 +6,8 @@
 
 import logging
 import json
+import random
+import string
 from flask import Flask, render_template
 from flask import session as login_session
 import requests
@@ -27,12 +29,15 @@ def loadClientID():
     header = {"Client-ID": "%s" % app_id}
     return header
 
+
+# Load Twitch App Client-Secret from ttv_client_secrets.json and return header with client secret
 def loadClientSecret():
     app_secret = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_secret']
     secret = {"Client-Secret": "%s" % app_secret}
     return secret
 
 
+# Combine the JSON responses for streams, games, follows into one JSON response with categories for each
 def combineJSON(streams=None, games=None, follows=None):
     data = {}
     if streams: data.update({'streams': streams.json()})
@@ -41,6 +46,15 @@ def combineJSON(streams=None, games=None, follows=None):
     return data
 
 
+# Log in handler with random state generator
+@app.route('/login')
+def login():
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
+    login_session['state'] = state
+    return state
+
+
+# Home page
 @app.route('/')
 def splashPage():
     client_id_header = loadClientID()
@@ -48,6 +62,8 @@ def splashPage():
     response_games = requests.get(games_url, headers=client_id_header)
     return combineJSON(streams=response_streams, games=response_games)
 
+
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=80)
