@@ -65,7 +65,7 @@ def login():
 # Log out handler
 @app.route('/disconnect')
 def disconnect():
-    if login_session:
+    if 'state' in login_session:
         del login_session['state']
     return redirect(url_for('homePage'))
 
