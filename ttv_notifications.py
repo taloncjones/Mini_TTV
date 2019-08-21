@@ -19,7 +19,7 @@ APPLICATION_NAME = 'TTV_Notifications'
 
 games_url = "https://api.twitch.tv/helix/games/top?first=10"
 streams_url = "https://api.twitch.tv/helix/streams?first=10"
-follow_url = "https://api.twitch.tv/helix/users/follows?from_id="
+follows_url = "https://api.twitch.tv/helix/users/follows?from_id="
 
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
 def loadClientID():
@@ -32,12 +32,21 @@ def loadClientSecret():
     secret = {"Client-Secret": "%s" % app_secret}
     return secret
 
+
+def combineJSON(streams=None, games=None, follows=None):
+    data = {}
+    if streams: data.update({'streams': streams.json()})
+    if games: data.update({'games': games.json()})
+    if follows: data.update({'follows': follows.json()})
+    return data
+
+
 @app.route('/')
 def splashPage():
     client_id_header = loadClientID()
     response_streams = requests.get(streams_url, headers=client_id_header)
     response_games = requests.get(games_url, headers=client_id_header)
-    return "%s\n%s" % (response_streams.json(), response_games.json())
+    return combineJSON(streams=response_streams, games=response_games)
 
 if __name__ == '__main__':
     app.debug = True
