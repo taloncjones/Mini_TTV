@@ -67,7 +67,7 @@ def disconnect():
 
 # Home page
 @app.route('/')
-def splashPage():
+def homePage():
     client_id_header = loadClientID()
     response_streams = requests.get(streams_url, headers=client_id_header)
     response_games = requests.get(games_url, headers=client_id_header)
