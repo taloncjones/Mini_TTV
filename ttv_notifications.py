@@ -8,7 +8,7 @@ import logging
 import json
 import random
 import string
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask import session as login_session
 import requests
 
@@ -52,6 +52,14 @@ def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
     return state
+
+
+# Log out handler
+@app.route('/disconnect')
+def disconnect():
+    if login_session:
+        del login_session['state']
+    return redirect(url_for('homePage'))
 
 
 # Home page
