@@ -19,6 +19,7 @@ app = Flask(__name__)
 
 APPLICATION_NAME = 'TTV_Notifications'
 
+oauth_url = "https://id.twitch.tv/oauth2/authorize?response_type=code&redirect_uri=http://localhost&scope=user_follows_edit"
 games_url = "https://api.twitch.tv/helix/games/top?first=10"
 streams_url = "https://api.twitch.tv/helix/streams?first=10"
 follows_url = "https://api.twitch.tv/helix/users/follows?from_id="
@@ -26,6 +27,7 @@ follows_url = "https://api.twitch.tv/helix/users/follows?from_id="
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
 def loadClientID():
     app_id = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_id']
+    login_session['client-id'] = app_id
     header = {"Client-ID": "%s" % app_id}
     return header
 
@@ -51,6 +53,7 @@ def combineJSON(streams=None, games=None, follows=None):
 def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
+    logging.debug("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'], login_session['state']))
     return state
 
 
