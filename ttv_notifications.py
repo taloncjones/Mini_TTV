@@ -8,7 +8,7 @@ import logging
 import json
 import random
 import string
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask import session as login_session
 import requests
 
@@ -49,16 +49,17 @@ def combineJSON(streams=None, games=None, follows=None):
 
 
 # Log in handler with random state generator
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'])
 def login():
-    state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
-    login_session['state'] = state
-    logging.debug("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
-                                                                login_session['state']))
-    response_login = requests.get("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
-                                                                login_session['state']))
-    logging.debug(response_login)
-    return state
+    if request.method == 'GET':
+        state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
+        login_session['state'] = state
+        logging.debug("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
+                                                                    login_session['state']))
+        return redirect("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
+                                                                    login_session['state']))
+    elif request.method == 'POST':
+        return "test"
 
 
 # Log out handler
