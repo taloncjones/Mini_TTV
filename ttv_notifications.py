@@ -64,6 +64,12 @@ def login():
 @app.route('/auth')
 def authenticate():
     logging.debug("Received Auth")
+    state = request.args.get('state')
+    if 'state' in login_session and login_session['state'] == state:
+        code = request.args.get('code')
+        scope = request.args.get('scope')
+    else:
+        # User not logged in or state != session state (manual /auth call)
     return redirect(url_for('homePage'))
 
 
