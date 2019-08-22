@@ -55,10 +55,9 @@ def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
     logging.debug("Received Login Request")
-    logging.debug("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
-                                                                login_session['state']))
-    return redirect("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
-                                                                login_session['state']))
+    url = "%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'], login_session['state'])
+    logging.debug("URL: %s" % url)
+    return redirect(url)
 
 
 # Auth handler for redirects after Twitch sign in
