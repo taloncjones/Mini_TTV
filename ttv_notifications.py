@@ -70,6 +70,7 @@ def authenticate():
 # Log out handler
 @app.route('/disconnect')
 def disconnect():
+    logging.debug("Received Logout Request")
     if 'state' in login_session:
         del login_session['state']
     return redirect(url_for('homePage'))
