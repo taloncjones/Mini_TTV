@@ -49,7 +49,7 @@ def combineJSON(streams=None, games=None, follows=None):
 
 
 # Log in handler with random state generator
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login')
 def login():
     if request.method == 'GET':
         state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
@@ -63,7 +63,7 @@ def login():
 
 
 # Auth handler for redirects after Twitch sign in
-@app.route('/auth', methods=['GET'])
+@app.route('/auth')
 def authenticate():
     logging.debug("Received Auth")
     return redirect(url_for('homePage'))
