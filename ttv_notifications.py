@@ -51,15 +51,13 @@ def combineJSON(streams=None, games=None, follows=None):
 # Log in handler with random state generator
 @app.route('/login')
 def login():
-    if request.method == 'GET':
-        state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
-        login_session['state'] = state
-        logging.debug("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
-                                                                    login_session['state']))
-        return redirect("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
-                                                                    login_session['state']))
-    elif request.method == 'POST':
-        return "test"
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
+    login_session['state'] = state
+    logging.debug("Received Login Request")
+    logging.debug("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
+                                                                login_session['state']))
+    return redirect("%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'],
+                                                                login_session['state']))
 
 
 # Auth handler for redirects after Twitch sign in
