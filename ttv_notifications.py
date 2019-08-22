@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 APPLICATION_NAME = 'TTV_Notifications'
 
-oauth_url = "https://id.twitch.tv/oauth2/authorize?response_type=code&redirect_uri=http://127.0.0.1&scope=user_follows_edit"
+oauth_url = "https://id.twitch.tv/oauth2/authorize?response_type=code&redirect_uri=http://127.0.0.1/auth&scope=user_follows_edit"
 games_url = "https://api.twitch.tv/helix/games/top?first=10"
 streams_url = "https://api.twitch.tv/helix/streams?first=10"
 follows_url = "https://api.twitch.tv/helix/users/follows?from_id="
@@ -60,6 +60,13 @@ def login():
                                                                     login_session['state']))
     elif request.method == 'POST':
         return "test"
+
+
+# Auth handler for redirects after Twitch sign in
+@app.route('/auth', methods=['GET'])
+def authenticate():
+    logging.debug("Received Auth")
+    return redirect(url_for('homePage'))
 
 
 # Log out handler
