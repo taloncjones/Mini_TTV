@@ -40,8 +40,9 @@ def loadClientSecret():
 
 
 # Combine the JSON responses for streams, games, follows into one JSON response with categories for each
-def combineJSON(streams=None, games=None, follows=None):
+def combineJSON(state, streams=None, games=None, follows=None):
     data = {}
+    data.update({'login': state})
     if streams: data.update({'streams': streams.json()})
     if games: data.update({'games': games.json()})
     if follows: data.update({'follows': follows.json()})
@@ -82,7 +83,8 @@ def homePage():
     client_id_header = loadClientID()
     response_streams = requests.get(streams_url, headers=client_id_header)
     response_games = requests.get(games_url, headers=client_id_header)
-    return combineJSON(streams=response_streams, games=response_games)
+    return combineJSON(state=login_session['state'] if 'state' in login_session else '',
+                       streams=response_streams, games=response_games)
 
 
 if __name__ == '__main__':
