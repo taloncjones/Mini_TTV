@@ -98,7 +98,7 @@ def home_page():
     response_streams = requests.get(STREAMS_URL, headers=client_id_header)
     response_games = requests.get(GAMES_URL, headers=client_id_header)
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
-                       streams=response_streams, games=response_games)
+                        streams=response_streams, games=response_games)
 
 
 if __name__ == '__main__':
