@@ -28,8 +28,9 @@ GAMES_URL = "https://api.twitch.tv/helix/games/top?first=10"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?first=10"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 
+
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
-def loadClientID():
+def load_client_id():
     app_id = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_id']
     login_session['client-id'] = app_id
     header = {"Client-ID": "%s" % app_id}
@@ -37,13 +38,13 @@ def loadClientID():
 
 
 # Load Twitch App Client-Secret from ttv_client_secrets.json and return header with client secret
-def loadClientSecret():
+def load_client_secret():
     app_secret = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_secret']
     return app_secret
 
 
 # Combine the JSON responses for streams, games, follows into one JSON response with categories for each
-def combineJSON(state, streams=None, games=None, follows=None):
+def combine_json(state, streams=None, games=None, follows=None):
     data = {}
     data.update({'login': state})
     if streams: data.update({'streams': streams.json()})
@@ -71,14 +72,14 @@ def authenticate():
     if 'state' in login_session and login_session['state'] == state:
         code = request.args.get('code')
         url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, login_session['client-id'],
-                                                            loadClientSecret(), code)
+                                                            load_client_secret(), code)
         token_response = requests.post(url)
         logging.debug("URL: %s" % url)
         logging.debug(token_response.text)
     else:
         pass
         # User not logged in or state != session state (manual /auth call)
-    return redirect(url_for('homePage'))
+    return redirect(url_for('home_page'))
 
 
 # Log out handler
@@ -87,16 +88,16 @@ def disconnect():
     logging.debug("Received Logout Request")
     if 'state' in login_session:
         del login_session['state']
-    return redirect(url_for('homePage'))
+    return redirect(url_for('home_page'))
 
 
 # Home page
 @app.route('/')
-def homePage():
-    client_id_header = loadClientID()
+def home_page():
+    client_id_header = load_client_id()
     response_streams = requests.get(STREAMS_URL, headers=client_id_header)
     response_games = requests.get(GAMES_URL, headers=client_id_header)
-    return combineJSON(state=login_session['state'] if 'state' in login_session else '',
+    return combine_json(state=login_session['state'] if 'state' in login_session else '',
                        streams=response_streams, games=response_games)
 
 
