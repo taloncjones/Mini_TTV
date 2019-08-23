@@ -73,9 +73,17 @@ def authenticate():
         code = request.args.get('code')
         url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, login_session['client-id'],
                                                             load_client_secret(), code)
-        token_response = requests.post(url)
         logging.debug("URL: %s" % url)
+        token_response = requests.post(url)
+
         logging.debug(token_response.text)
+        json_response = json.loads(token_response.text)
+
+        access_token, expires_in, refresh_token = json_response['access_token'],\
+                                                  json_response['expires_in'],\
+                                                  json_response['refresh_token']
+        logging.debug("AT: %s\nEx: %s\nRT: %s" % (access_token, expires_in, refresh_token))
+
     else:
         pass
         # User not logged in or state != session state (manual /auth call)
