@@ -19,14 +19,14 @@ app = Flask(__name__)
 
 APPLICATION_NAME = 'TTV_Notifications'
 
-oauth_url = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
+OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
             "&redirect_uri=http://127.0.0.1/auth" \
             "&scope=user_follows_edit"
-token_url = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
+TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
             "&redirect_uri=http://127.0.0.1/auth"
-games_url = "https://api.twitch.tv/helix/games/top?first=10"
-streams_url = "https://api.twitch.tv/helix/streams?first=10"
-follows_url = "https://api.twitch.tv/helix/users/follows?from_id="
+GAMES_URL = "https://api.twitch.tv/helix/games/top?first=10"
+STREAMS_URL = "https://api.twitch.tv/helix/streams?first=10"
+FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
 def loadClientID():
@@ -58,7 +58,7 @@ def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
     logging.debug("Received Login Request")
-    url = "%s&client_id=%s&state=%s" % (oauth_url, login_session['client-id'], login_session['state'])
+    url = "%s&client_id=%s&state=%s" % (OAUTH_URL, login_session['client-id'], login_session['state'])
     logging.debug("URL: %s" % url)
     return redirect(url)
 
@@ -70,7 +70,7 @@ def authenticate():
     state = request.args.get('state')
     if 'state' in login_session and login_session['state'] == state:
         code = request.args.get('code')
-        url = "%s&client_id=%s&client_secret=%s&code=%s" % (token_url, login_session['client-id'],
+        url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, login_session['client-id'],
                                                             loadClientSecret(), code)
         token_response = requests.post(url)
         logging.debug("URL: %s" % url)
@@ -94,8 +94,8 @@ def disconnect():
 @app.route('/')
 def homePage():
     client_id_header = loadClientID()
-    response_streams = requests.get(streams_url, headers=client_id_header)
-    response_games = requests.get(games_url, headers=client_id_header)
+    response_streams = requests.get(STREAMS_URL, headers=client_id_header)
+    response_games = requests.get(GAMES_URL, headers=client_id_header)
     return combineJSON(state=login_session['state'] if 'state' in login_session else '',
                        streams=response_streams, games=response_games)
 
