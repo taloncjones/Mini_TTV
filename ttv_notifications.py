@@ -21,7 +21,7 @@ APPLICATION_NAME = 'TTV_Notifications'
 
 OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
             "&redirect_uri=http://127.0.0.1/auth" \
-            "&scope=user_follows_edit"
+            "&scope=user_follows_edit user_read"
 TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
             "&redirect_uri=http://127.0.0.1/auth"
 GAMES_URL = "https://api.twitch.tv/helix/games/top?first=10"
