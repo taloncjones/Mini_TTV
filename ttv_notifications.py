@@ -39,8 +39,7 @@ def loadClientID():
 # Load Twitch App Client-Secret from ttv_client_secrets.json and return header with client secret
 def loadClientSecret():
     app_secret = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_secret']
-    secret = {"Client-Secret": "%s" % app_secret}
-    return secret
+    return app_secret
 
 
 # Combine the JSON responses for streams, games, follows into one JSON response with categories for each
