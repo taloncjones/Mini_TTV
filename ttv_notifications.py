@@ -19,7 +19,11 @@ app = Flask(__name__)
 
 APPLICATION_NAME = 'TTV_Notifications'
 
-oauth_url = "https://id.twitch.tv/oauth2/authorize?response_type=code&redirect_uri=http://127.0.0.1/auth&scope=user_follows_edit"
+oauth_url = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
+            "&redirect_uri=http://127.0.0.1/auth" \
+            "&scope=user_follows_edit"
+token_url = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
+            "&redirect_uri=127.0.0.1/auth"
 games_url = "https://api.twitch.tv/helix/games/top?first=10"
 streams_url = "https://api.twitch.tv/helix/streams?first=10"
 follows_url = "https://api.twitch.tv/helix/users/follows?from_id="
@@ -67,11 +71,11 @@ def authenticate():
     state = request.args.get('state')
     if 'state' in login_session and login_session['state'] == state:
         code = request.args.get('code')
-        url = "https://id.twitch.tv/oauth2/token" \
-              "?client_id=%s&client_secret=%s&code=%s&grant_type=authorization_code" \
-              "&redirect_uri=127.0.0.1" % (login_session['client-id'], loadClientSecret(), code)
-        token_response = requests.get(url)
-        logging.debug(token_response.json())
+        url = "%s&client_id=%s&client_secret=%s&code=%s" % (token_url, login_session['client-id'],
+                                                            loadClientSecret(), code)
+        token_response = requests.post(url)
+        logging.debug("URL: %s" % url)
+        logging.debug(token_response.text)
     else:
         pass
         # User not logged in or state != session state (manual /auth call)
