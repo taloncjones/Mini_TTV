@@ -67,7 +67,11 @@ def authenticate():
     state = request.args.get('state')
     if 'state' in login_session and login_session['state'] == state:
         code = request.args.get('code')
-        scope = request.args.get('scope')
+        url = "https://id.twitch.tv/oauth2/token" \
+              "?client_id=%s&client_secret=%s&code=%s&grant_type=authorization_code" \
+              "&redirect_uri=127.0.0.1" % (login_session['client-id'], loadClientSecret(), code)
+        token_response = requests.get(url)
+        logging.debug(token_response.json())
     else:
         pass
         # User not logged in or state != session state (manual /auth call)
