@@ -69,6 +69,7 @@ def authenticate():
         code = request.args.get('code')
         scope = request.args.get('scope')
     else:
+        pass
         # User not logged in or state != session state (manual /auth call)
     return redirect(url_for('homePage'))
 
