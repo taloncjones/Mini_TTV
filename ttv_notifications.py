@@ -88,6 +88,10 @@ def authenticate():
                                               json_response['refresh_token']
     logging.debug("AT: %s\nEx: %s\nRT: %s" % (access_token, expires_in, refresh_token))
 
+    login_session['access_token'] = access_token
+    login_session['token_expiration'] = expires_in
+    login_session['refresh_token'] = refresh_token
+
     return redirect(url_for('home_page'))
 
 
