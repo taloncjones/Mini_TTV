@@ -27,6 +27,7 @@ TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
 GAMES_URL = "https://api.twitch.tv/helix/games/top?first=10"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?first=10"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
+VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
 
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
@@ -46,6 +47,14 @@ def load_client_secret():
 def load_access_token():
     header = {"Authorization: %s" % login_session['access_token']}
     return header
+
+
+# Validate the current access token loaded from login_session['access_token']
+@app.route('/authenticate')
+def validate_access_token():
+    validate_response = requests.get(VALIDATE_URL, headers=load_access_token())
+    logging.debug(validate_response.text)
+    return
 
 
 # Combine the JSON responses for streams, games, follows into one JSON response with categories for each
