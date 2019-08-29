@@ -51,7 +51,6 @@ def load_access_token():
 
 
 # Validate the current access token loaded from login_session['access_token']
-@app.route('/authenticate')
 def validate_access_token():
     validate_response = requests.get(VALIDATE_URL, headers=load_access_token())
     v_data = validate_response.json()
