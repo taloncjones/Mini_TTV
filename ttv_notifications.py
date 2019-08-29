@@ -83,18 +83,11 @@ def get_total_follows(header):
 
 def get_live_follows(header):
     data = {}
-    batch = 100
-    url = "%s%s&first=%s" % (FOLLOWS_URL, login_session['user_id'], batch)
 
-    follow_response = requests.get(url, headers=header)
-    json_response = follow_response.json()
-    data.update(json_response)
+    total = get_total_follows(header)
+    logging.debug("Total: %s" % total)
+
     logging.debug(data)
-
-    total = json_response['total']
-    cursor = json_response['pagination']['cursor']
-    logging.debug("Total: %s\tCursor: %s" % (total, cursor))
-
     return data
 
 
