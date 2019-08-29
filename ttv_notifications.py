@@ -43,6 +43,11 @@ def load_client_secret():
     return app_secret
 
 
+def load_access_token():
+    header = {"Authorization: %s" % login_session['access_token']}
+    return header
+
+
 # Combine the JSON responses for streams, games, follows into one JSON response with categories for each
 def combine_json(state, streams=None, games=None, follows=None):
     data = {}
