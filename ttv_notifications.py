@@ -44,6 +44,7 @@ def load_client_secret():
     return app_secret
 
 
+# Load Access Token from login_session['access_token'] and return OAuth header
 def load_access_token():
     header = {"Authorization": "OAuth %s" % login_session['access_token']}
     return header
