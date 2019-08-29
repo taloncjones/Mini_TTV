@@ -122,7 +122,7 @@ def authenticate():
 def disconnect():
     logging.debug("Received Logout Request")
     if 'state' in login_session:
-        del login_session['state']
+        login_session.clear()
     return redirect(url_for('home_page'))
 
 
