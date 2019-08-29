@@ -74,6 +74,13 @@ def combine_json(state, streams=None, games=None, follows=None):
     return data
 
 
+def get_total_follows(header):
+    url = "%s%s&first=1" % (FOLLOWS_URL, login_session['user_id'])
+    json_response = requests.get(url, headers=header).json()
+    total = json_response['total']
+    return total
+
+
 def get_live_follows(header):
     data = {}
     batch = 100
