@@ -132,8 +132,14 @@ def home_page():
     client_id_header = load_client_id()
     response_streams = requests.get(STREAMS_URL, headers=client_id_header)
     response_games = requests.get(GAMES_URL, headers=client_id_header)
+    if 'state' in login_session:
+        if validate_access_token():
+            response_follows = requests.get(FOLLOWS_URL + login_session['user_id'], headers=client_id_header)
+        else:
+            redirect(url_for('disconnect'))
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
-                        streams=response_streams, games=response_games)
+                        streams=response_streams, games=response_games,
+                        follows=response_follows if 'state' in login_session else '')
 
 
 if __name__ == '__main__':
