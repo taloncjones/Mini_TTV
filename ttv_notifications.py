@@ -75,10 +75,15 @@ def combine_json(state, streams=None, games=None, follows=None):
 
 
 def get_live_follows(header):
+    data = {}
     batch = 100
     url = "%s%s&first=%s" % (FOLLOWS_URL, login_session['user_id'], batch)
-    check_response = requests.get(url, headers=header)
-    logging.debug(check_response.text)
+    follow_response = requests.get(url, headers=header)
+    json_response = follow_response.json()
+    total = json_response['total']
+    cursor = json_response['pagination']['cursor']
+    logging.debug("Total: %s\tCursor: %s" % (total, cursor))
+
     return
 
 
