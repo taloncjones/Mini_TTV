@@ -33,7 +33,7 @@ VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 # Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
 def load_client_id():
     app_id = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_id']
-    login_session['client-id'] = app_id
+    login_session['client_id'] = app_id
     header = {"Client-ID": "%s" % app_id}
     return header
 
@@ -74,7 +74,7 @@ def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
     logging.debug("Received Login Request")
-    url = "%s&client_id=%s&state=%s" % (OAUTH_URL, login_session['client-id'], login_session['state'])
+    url = "%s&client_id=%s&state=%s" % (OAUTH_URL, login_session['client_id'], login_session['state'])
     logging.debug("URL: %s" % url)
     return redirect(url)
 
@@ -91,7 +91,7 @@ def authenticate():
         pass
 
     code = request.args.get('code')
-    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, login_session['client-id'],
+    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, login_session['client_id'],
                                                         load_client_secret(), code)
     logging.debug("URL: %s" % url)
     token_response = requests.post(url)
