@@ -73,6 +73,7 @@ def login():
 @app.route('/auth')
 def authenticate():
     logging.debug("Received Auth")
+    logging.debug(request.args)
     state = request.args.get('state')
 
     if ('state' not in login_session) or ('state' in login_session and login_session['state'] != state):
