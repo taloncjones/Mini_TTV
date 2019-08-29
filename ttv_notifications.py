@@ -26,7 +26,7 @@ TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
             "&redirect_uri=http://127.0.0.1/auth"
 GAMES_URL = "https://api.twitch.tv/helix/games/top?first=10"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?first=10"
-FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?first=100&from_id="
+FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
 
@@ -72,6 +72,14 @@ def combine_json(state, streams=None, games=None, follows=None):
     if games: data.update({'games': games.json()})
     if follows: data.update({'follows': follows.json()})
     return data
+
+
+def get_live_follows(header):
+    batch = 100
+    url = "%s%s&first=%s" % (FOLLOWS_URL, login_session['user_id'], batch)
+    check_response = requests.get(url, headers=header)
+    logging.debug(check_response.text)
+    return
 
 
 # Log in handler with random state generator
