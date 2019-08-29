@@ -70,7 +70,7 @@ def combine_json(state, streams=None, games=None, follows=None):
     data.update({'login': state})
     if streams: data.update({'streams': streams.json()})
     if games: data.update({'games': games.json()})
-    if follows: data.update({'follows': follows.json()})
+    if follows: data.update({'follows': follows})
     return data
 
 
@@ -78,13 +78,17 @@ def get_live_follows(header):
     data = {}
     batch = 100
     url = "%s%s&first=%s" % (FOLLOWS_URL, login_session['user_id'], batch)
+
     follow_response = requests.get(url, headers=header)
     json_response = follow_response.json()
+    data.update(json_response)
+    logging.debug(data)
+
     total = json_response['total']
     cursor = json_response['pagination']['cursor']
     logging.debug("Total: %s\tCursor: %s" % (total, cursor))
 
-    return
+    return data
 
 
 # Log in handler with random state generator
@@ -147,8 +151,8 @@ def home_page():
     response_games = requests.get(GAMES_URL, headers=client_id_header)
     if 'state' in login_session:
         if validate_access_token():
-            get_live_follows(client_id_header)
-            response_follows = requests.get(FOLLOWS_URL + login_session['user_id'], headers=client_id_header)
+            response_follows = get_live_follows(client_id_header)
+            # response_follows = requests.get(FOLLOWS_URL + login_session['user_id'], headers=client_id_header)
         else:
             redirect(url_for('disconnect'))
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
