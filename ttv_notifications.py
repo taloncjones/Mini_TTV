@@ -82,10 +82,21 @@ def get_total_follows(header):
 
 
 def get_live_follows(header):
-    data = {}
+    data = {'data': {}}
+    batch, cursor = 0, ''
 
     total = get_total_follows(header)
     logging.debug("Total: %s" % total)
+
+    default_url = "%s%s&first=100" % (FOLLOWS_URL, login_session['user_id'])
+    while batch <= total:
+        url = "%s&after=%s" % (default_url, cursor) if cursor else default_url
+        json_response = requests.get(url, headers=header).json()
+        data['data'].update(json_response)
+        # for streamer in json_response['data']:
+            # is_live(streamer)
+        cursor = json_response['pagination']['cursor']
+        batch += 100
 
     logging.debug(data)
     return data
