@@ -54,8 +54,15 @@ def load_access_token():
 @app.route('/authenticate')
 def validate_access_token():
     validate_response = requests.get(VALIDATE_URL, headers=load_access_token())
-    logging.debug(validate_response.text)
-    return
+    v_data = validate_response.json()
+    logging.debug(v_data)
+
+    if 'status' in v_data and v_data['status'] == 401:
+        return False
+
+    login_session['login'], login_session['user_id'] = v_data['login'], v_data['user_id']
+    logging.debug("User Info: %s, %s" % (login_session['login'], login_session['user_id']))
+    return True
 
 
 # Combine the JSON responses for streams, games, follows into one JSON response with categories for each
