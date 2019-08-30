@@ -29,7 +29,7 @@ VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
 # Validate the current access token loaded from login_session['access_token']
 def validate_access_token():
-    validate_response = requests.get(VALIDATE_URL, headers=load_access_token())
+    validate_response = requests.get(VALIDATE_URL, headers=create_auth_header(login_session['access_token']))
     v_data = validate_response.json()
     logging.debug(v_data)
 
@@ -134,7 +134,7 @@ def disconnect():
 @app.route('/')
 def home_page():
     client_id = load_client_id()
-    client_id_header = create_header("Client-ID", client_id)
+    client_id_header = create_client_header(client_id)
     response_streams = requests.get(STREAMS_URL, headers=client_id_header)
     response_games = requests.get(GAMES_URL, headers=client_id_header)
     if 'state' in login_session:
