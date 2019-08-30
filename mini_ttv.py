@@ -7,7 +7,7 @@ from flask import session as login_session
 import requests
 from ttv_credentials import load_client_id, load_client_secret
 from ttv_json_handler import combine_json
-from ttv_network import create_auth_header, create_client_header
+from ttv_network_handler import create_auth_header, create_client_header
 
 logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
