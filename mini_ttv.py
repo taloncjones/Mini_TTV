@@ -11,6 +11,7 @@ import string
 from flask import Flask, redirect, url_for, request
 from flask import session as login_session
 import requests
+from ttv_credentials import load_client_id, load_client_secret
 
 logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -28,20 +29,6 @@ GAMES_URL = "https://api.twitch.tv/helix/games/top?"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
-
-
-# Load Twitch App Client-ID from ttv_client_secrets.json and return header with client ID
-def load_client_id():
-    app_id = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_id']
-    login_session['client_id'] = app_id
-    header = {"Client-ID": "%s" % app_id}
-    return header
-
-
-# Load Twitch App Client-Secret from ttv_client_secrets.json and return header with client secret
-def load_client_secret():
-    app_secret = json.loads(open('ttv_client_secrets.json', 'r').read())['web']['app_secret']
-    return app_secret
 
 
 # Load Access Token from login_session['access_token'] and return OAuth header
