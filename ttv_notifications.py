@@ -112,6 +112,9 @@ def get_live_follows(header):
 def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
+
+    if 'client_id' not in login_session: load_client_id()
+
     logging.debug("Received Login Request")
     url = "%s&client_id=%s&state=%s" % (OAUTH_URL, login_session['client_id'], login_session['state'])
     logging.debug("URL: %s" % url)
