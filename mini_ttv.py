@@ -83,10 +83,8 @@ def login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
 
-    if 'client_id' not in login_session: load_client_id()
-
     logging.debug("Received Login Request")
-    url = "%s&client_id=%s&state=%s" % (OAUTH_URL, login_session['client_id'], login_session['state'])
+    url = "%s&client_id=%s&state=%s" % (OAUTH_URL, load_client_id(), login_session['state'])
     logging.debug("URL: %s" % url)
     return redirect(url)
 
@@ -103,7 +101,7 @@ def authenticate():
         pass
 
     code = request.args.get('code')
-    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, login_session['client_id'],
+    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, load_client_id(),
                                                         load_client_secret(), code)
     logging.debug("URL: %s" % url)
     token_response = requests.post(url)
@@ -135,7 +133,8 @@ def disconnect():
 # Home page
 @app.route('/')
 def home_page():
-    client_id_header = load_client_id()
+    client_id = load_client_id()
+    client_id_header = create_header("Client-ID", client_id)
     response_streams = requests.get(STREAMS_URL, headers=client_id_header)
     response_games = requests.get(GAMES_URL, headers=client_id_header)
     if 'state' in login_session:
