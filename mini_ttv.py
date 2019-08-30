@@ -135,17 +135,17 @@ def disconnect():
 def home_page():
     client_id = load_client_id()
     client_id_header = create_client_header(client_id)
-    response_streams = requests.get(STREAMS_URL, headers=client_id_header)
-    response_games = requests.get(GAMES_URL, headers=client_id_header)
+    json_streams = requests.get(STREAMS_URL, headers=client_id_header).json()
+    json_games = requests.get(GAMES_URL, headers=client_id_header).json()
     if 'state' in login_session:
         if validate_access_token():
-            response_follows = get_live_follows(client_id_header)
+            json_follows = get_live_follows(client_id_header)
             # response_follows = requests.get(FOLLOWS_URL + login_session['user_id'], headers=client_id_header)
         else:
             disconnect()
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
-                        streams=response_streams, games=response_games,
-                        follows=response_follows if 'state' in login_session else '')
+                        streams=json_streams, games=json_games,
+                        follows=json_follows if 'state' in login_session else '')
 
 
 if __name__ == '__main__':
