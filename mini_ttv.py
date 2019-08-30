@@ -27,12 +27,6 @@ FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
 
-# Load Access Token from login_session['access_token'] and return OAuth header
-def load_access_token():
-    header = {"Authorization": "OAuth %s" % login_session['access_token']}
-    return header
-
-
 # Validate the current access token loaded from login_session['access_token']
 def validate_access_token():
     validate_response = requests.get(VALIDATE_URL, headers=load_access_token())
