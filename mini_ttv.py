@@ -1,9 +1,3 @@
-# File: ttv_notifications.py
-# Use: Gets Twitch TV notifications
-# Author: Talon Jones
-
-# Purpose: Use Twitch API to receive notifications, host on Heroku to periodically pull updates
-
 import logging
 import json
 import random
