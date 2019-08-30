@@ -8,7 +8,7 @@ import logging
 import json
 import random
 import string
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, redirect, url_for, request
 from flask import session as login_session
 import requests
 
