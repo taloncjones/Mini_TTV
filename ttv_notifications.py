@@ -92,9 +92,14 @@ def get_live_follows(header):
     while batch <= total:
         url = "%s&after=%s" % (default_url, cursor) if cursor else default_url
         json_response = requests.get(url, headers=header).json()
-        data['data'].update(json_response)
-        # for streamer in json_response['data']:
-            # is_live(streamer)
+
+        user_list = ""
+
+        for streamer in json_response['data']:
+            user_list += "user_id=%s&" % streamer['to_id']
+
+        data['data'].update(are_users_live(user_list))
+
         cursor = json_response['pagination']['cursor']
         batch += 100
 
