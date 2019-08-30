@@ -41,16 +41,6 @@ def validate_access_token():
     return True
 
 
-# Combine the JSON responses for streams, games, follows into one JSON response with categories for each
-def combine_json(state, streams=None, games=None, follows=None):
-    data = {}
-    data.update({'login': state})
-    if streams: data.update({'streams': streams.json()})
-    if games: data.update({'games': games.json()})
-    if follows: data.update({'follows': follows})
-    return data
-
-
 def get_total_follows(header):
     url = "%s%s&first=1" % (FOLLOWS_URL, login_session['user_id'])
     json_response = requests.get(url, headers=header).json()
