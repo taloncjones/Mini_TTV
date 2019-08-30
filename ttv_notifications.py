@@ -24,8 +24,8 @@ OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
             "&scope=user_read"
 TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
             "&redirect_uri=http://127.0.0.1/auth"
-GAMES_URL = "https://api.twitch.tv/helix/games/top?first=10"
-STREAMS_URL = "https://api.twitch.tv/helix/streams?first=10"
+GAMES_URL = "https://api.twitch.tv/helix/games/top?"
+STREAMS_URL = "https://api.twitch.tv/helix/streams?"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
