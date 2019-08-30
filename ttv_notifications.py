@@ -170,7 +170,7 @@ def home_page():
             response_follows = get_live_follows(client_id_header)
             # response_follows = requests.get(FOLLOWS_URL + login_session['user_id'], headers=client_id_header)
         else:
-            redirect(url_for('login'))
+            disconnect()
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
                         streams=response_streams, games=response_games,
                         follows=response_follows if 'state' in login_session else '')
