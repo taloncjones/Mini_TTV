@@ -45,3 +45,10 @@ def get_auth_token():
     login_session['token_expiration'] = expires_in
     login_session['refresh_token'] = refresh_token
     return
+
+
+def user_disconnect():
+    logging.debug("Received Logout Request")
+    if 'state' in login_session:
+        login_session.clear()
+    return

@@ -5,7 +5,7 @@ import string
 from flask import Flask, redirect, url_for, request
 from flask import session as login_session
 import requests
-from ttv_credentials import load_client_id, load_client_secret, get_user_auth, get_auth_token
+from ttv_credentials import load_client_id, load_client_secret, get_user_auth, get_auth_token, user_disconnect
 from ttv_json_handler import combine_json
 from ttv_network_handler import create_auth_header, create_client_header
 from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
@@ -34,9 +34,7 @@ def authenticate():
 # Log out handler
 @app.route('/disconnect')
 def disconnect():
-    logging.debug("Received Logout Request")
-    if 'state' in login_session:
-        login_session.clear()
+    user_disconnect()
     return redirect(url_for('home_page'))
 
 
