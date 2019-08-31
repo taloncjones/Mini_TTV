@@ -1,6 +1,4 @@
-import json
 import logging
-import requests
 
 from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_get_json, url_post_json
 
