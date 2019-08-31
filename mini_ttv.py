@@ -70,11 +70,11 @@ def disconnect():
 def home_page():
     client_id = load_client_id()
     client_id_header = create_client_header(client_id)
-    json_streams = requests.get(STREAMS_URL, headers=client_id_header).json()
-    json_games = requests.get(GAMES_URL, headers=client_id_header).json()
+    json_streams = ttv_top_streams(client_id)
+    json_games = ttv_top_games(client_id)
     if 'state' in login_session:
-        if validate_access_token():
-            json_follows = get_live_follows(client_id_header)
+        if ttv_validate_token(login_session['access_token']):
+            json_follows = ttv_live_follows(client_id_header)
             # response_follows = requests.get(FOLLOWS_URL + login_session['user_id'], headers=client_id_header)
         else:
             disconnect()
