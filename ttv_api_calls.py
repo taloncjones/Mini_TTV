@@ -64,8 +64,8 @@ def ttv_live_follows(user_id, client_id):
 
 
 def ttv_top_streams(client_id):
-    return requests.get(STREAMS_URL, headers=create_client_header(client_id)).json()
+    return url_get_json(STREAMS_URL, create_client_header(client_id))
 
 
 def ttv_top_games(client_id):
-    return requests.get(GAMES_URL, headers=create_client_header(client_id)).json()
+    return url_get_json(GAMES_URL, create_client_header(client_id))
