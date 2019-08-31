@@ -5,76 +5,17 @@ import string
 from flask import Flask, redirect, url_for, request
 from flask import session as login_session
 import requests
-from ttv_credentials import load_client_id, load_client_secret
+from ttv_credentials import load_client_id, load_client_secret, get_user_auth
 from ttv_json_handler import combine_json
 from ttv_network_handler import create_auth_header, create_client_header
+from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
 
 logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
 
-APPLICATION_NAME = 'TTV_Notifications'
-
-OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
-            "&redirect_uri=http://127.0.0.1/auth" \
-            "&scope=user_read"
-TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
-            "&redirect_uri=http://127.0.0.1/auth"
-GAMES_URL = "https://api.twitch.tv/helix/games/top?"
-STREAMS_URL = "https://api.twitch.tv/helix/streams?"
-FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
-VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
-
-
-# Validate the current access token loaded from login_session['access_token']
-def validate_access_token():
-    validate_response = requests.get(VALIDATE_URL, headers=create_auth_header(login_session['access_token']))
-    v_data = validate_response.json()
-    logging.debug(v_data)
-
-    if 'status' in v_data and v_data['status'] == 401:
-        return False
-
-    login_session['login'], login_session['user_id'] = v_data['login'], v_data['user_id']
-    logging.debug("User Info: %s, %s" % (login_session['login'], login_session['user_id']))
-    return True
-
-
-def get_total_follows(header):
-    url = "%s%s&first=1" % (FOLLOWS_URL, login_session['user_id'])
-    json_response = requests.get(url, headers=header).json()
-    total = json_response['total']
-    return total
-
-
-def get_live_follows(header):
-    data = {}
-    batch, cursor = 0, ''
-
-    total = get_total_follows(header)
-    logging.debug("Total: %s" % total)
-
-    default_url = "%s%s&first=100" % (FOLLOWS_URL, login_session['user_id'])
-
-    while batch <= total:
-        url = "%s&after=%s" % (default_url, cursor) if cursor else default_url
-        json_response = requests.get(url, headers=header).json()
-
-        user_list = ""
-
-        for streamer in json_response['data']:
-            user_list += "user_id=%s&" % streamer['to_id']
-
-        json_response = requests.get(STREAMS_URL + user_list[:-1], headers=header).json()
-        live_streams = json_response['data']
-        data.update({ "page%s" % int((batch/100)+1) : live_streams })
-
-        cursor = json_response['pagination']['cursor']
-        batch += 100
-
-    logging.debug(data)
-    return data
+APPLICATION_NAME = 'Mini_TTV'
 
 
 # Log in handler with random state generator
