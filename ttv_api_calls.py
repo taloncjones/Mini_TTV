@@ -27,6 +27,16 @@ def ttv_get_auth_code(state, client_id):
     return url_redirect(url)
 
 
+def ttv_get_auth_token(client_id, client_secret, code):
+    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, client_id,
+                                                        client_secret, code)
+    logging.debug("URL: %s" % url)
+    token_response = requests.post(url)
+
+    logging.debug(token_response.text)
+    return token_response.json()
+
+
 def ttv_total_follows(user_id, client_id):
     url = "%s%s&first=1" % (FOLLOWS_URL, user_id)
     json_response = requests.get(url, headers=create_client_header(client_id)).json()

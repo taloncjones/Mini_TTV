@@ -5,7 +5,7 @@ import string
 from flask import Flask, redirect, url_for, request
 from flask import session as login_session
 import requests
-from ttv_credentials import load_client_id, load_client_secret, get_user_auth
+from ttv_credentials import load_client_id, load_client_secret, get_user_auth, get_auth_token
 from ttv_json_handler import combine_json
 from ttv_network_handler import create_auth_header, create_client_header
 from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
@@ -27,32 +27,7 @@ def login():
 # Auth handler for redirects after Twitch sign in
 @app.route('/auth')
 def authenticate():
-    logging.debug("Received Auth")
-    logging.debug(request.args)
-    state = request.args.get('state')
-
-    if ('state' not in login_session) or ('state' in login_session and login_session['state'] != state):
-        # Insert error condition. User not logged in or state != session state (manual /auth call)
-        pass
-
-    code = request.args.get('code')
-    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, load_client_id(),
-                                                        load_client_secret(), code)
-    logging.debug("URL: %s" % url)
-    token_response = requests.post(url)
-
-    logging.debug(token_response.text)
-    json_response = json.loads(token_response.text)
-
-    access_token, expires_in, refresh_token = json_response['access_token'],\
-                                              json_response['expires_in'],\
-                                              json_response['refresh_token']
-    logging.debug("AT: %s\nEx: %s\nRT: %s" % (access_token, expires_in, refresh_token))
-
-    login_session['access_token'] = access_token
-    login_session['token_expiration'] = expires_in
-    login_session['refresh_token'] = refresh_token
-
+    get_auth_token()
     return redirect(url_for('home_page'))
 
 
