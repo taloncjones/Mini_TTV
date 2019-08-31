@@ -21,13 +21,7 @@ APPLICATION_NAME = 'Mini_TTV'
 # Log in handler with random state generator
 @app.route('/login')
 def login():
-    state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
-    login_session['state'] = state
-
-    logging.debug("Received Login Request")
-    url = "%s&client_id=%s&state=%s" % (OAUTH_URL, load_client_id(), login_session['state'])
-    logging.debug("URL: %s" % url)
-    return redirect(url)
+    return get_user_auth()
 
 
 # Auth handler for redirects after Twitch sign in
