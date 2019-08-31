@@ -2,7 +2,7 @@ import json
 import logging
 import requests
 
-from ttv_network_handler import url_redirect, create_client_header, create_auth_header
+from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_json
 
 OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
             "&redirect_uri=http://127.0.0.1/auth" \
@@ -16,9 +16,8 @@ VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
 
 def ttv_validate_token(token):
-    validate_response = requests.get(VALIDATE_URL, headers=create_auth_header(token))
-    v_data = validate_response.json()
-    return (v_data['login'], v_data['user_id'])
+    validation_data = url_json(VALIDATE_URL, create_auth_header(token))
+    return validation_data['login'], validation_data['user_id']
 
 
 def ttv_get_auth_code(state, client_id):

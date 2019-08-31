@@ -1,4 +1,5 @@
 from flask import redirect, request
+import requests
 import logging
 
 # Create header for client-id
@@ -17,6 +18,10 @@ def create_auth_header(token):
 def url_redirect(url):
     logging.debug("Redirected to: " + url)
     return redirect(url)
+
+
+def url_json(url, header):
+    return requests.get(url, headers=header).json
 
 
 def get_params():
