@@ -2,7 +2,7 @@ import json
 import logging
 import requests
 
-from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_json
+from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_get_json, url_post_json
 
 OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
             "&redirect_uri=http://127.0.0.1/auth" \
@@ -16,7 +16,7 @@ VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 
 
 def ttv_validate_token(token):
-    validation_data = url_json(VALIDATE_URL, create_auth_header(token))
+    validation_data = url_get_json(VALIDATE_URL, create_auth_header(token))
     return validation_data['login'], validation_data['user_id']
 
 
@@ -27,13 +27,9 @@ def ttv_get_auth_code(state, client_id):
 
 
 def ttv_get_auth_token(client_id, client_secret, code):
-    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, client_id,
-                                                        client_secret, code)
+    url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, client_id, client_secret, code)
     logging.debug("URL: %s" % url)
-    token_response = requests.post(url)
-
-    logging.debug(token_response.text)
-    return token_response.json()
+    return url_post_json(url)
 
 
 def ttv_total_follows(user_id, client_id):

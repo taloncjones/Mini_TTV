@@ -20,8 +20,12 @@ def url_redirect(url):
     return redirect(url)
 
 
-def url_json(url, header):
-    return requests.get(url, headers=header).json
+def url_get_json(url, header=""):
+    return requests.get(url, headers=header).json()
+
+
+def url_post_json(url, header=""):
+    return requests.post(url, headers=header).json()
 
 
 def get_params():
