@@ -42,7 +42,6 @@ def disconnect():
 @app.route('/')
 def home_page():
     client_id = load_client_id()
-    client_id_header = create_client_header(client_id)
     json_streams = ttv_top_streams(client_id)
     json_games = ttv_top_games(client_id)
     if 'state' in login_session:
