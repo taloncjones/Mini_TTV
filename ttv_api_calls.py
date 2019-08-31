@@ -32,10 +32,7 @@ def ttv_get_auth_token(client_id, client_secret, code):
 
 def ttv_total_follows(user_id, client_id):
     url = "%s%s&first=1" % (FOLLOWS_URL, user_id)
-    json_response = requests.get(url, headers=create_client_header(client_id)).json()
-    logging.debug("Total: " + json.dumps(json_response))
-    total = json_response['total']
-    return total
+    return url_get_json(url, create_client_header(client_id))['total']
 
 
 def ttv_live_follows(user_id, client_id):
