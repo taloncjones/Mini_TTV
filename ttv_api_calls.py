@@ -45,19 +45,19 @@ def ttv_live_follows(user_id, client_id):
     default_url = "%s%s&first=100" % (FOLLOWS_URL, user_id)
 
     while batch <= total:
-        url = "%s&after=%s" % (default_url, cursor) if cursor else default_url
-        json_response = requests.get(url, headers=header).json()
-
         user_list = ""
 
-        for streamer in json_response['data']:
+        url = "%s&after=%s" % (default_url, cursor) if cursor else default_url
+        follow_json_response = url_get_json(url, header)
+
+        for streamer in follow_json_response['data']:
             user_list += "user_id=%s&" % streamer['to_id']
 
-        json_response = requests.get(STREAMS_URL + user_list[:-1], headers=header).json()
-        live_streams = json_response['data']
+        live_json_response = url_get_json(STREAMS_URL + user_list[:-1], header)
+        live_streams = live_json_response['data']
         data.update({"page%s" % int((batch / 100) + 1): live_streams})
 
-        cursor = json_response['pagination']['cursor']
+        cursor = live_json_response['pagination']['cursor']
         batch += 100
 
     return data
