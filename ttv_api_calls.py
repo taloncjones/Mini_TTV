@@ -50,7 +50,7 @@ def ttv_live_follows(user_id, client_id):
     batch, cursor = 0, ''
 
     header = create_client_header(client_id)
-    total = ttv_total_follows(header)
+    total = ttv_total_follows(user_id, client_id)
 
     default_url = "%s%s&first=100" % (FOLLOWS_URL, user_id)
 
