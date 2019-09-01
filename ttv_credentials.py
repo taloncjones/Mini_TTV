@@ -1,5 +1,10 @@
-import json, random, logging, string
+import json
+import logging
+import random
+import string
+
 from flask import session as login_session
+
 from ttv_api_calls import ttv_get_auth_code, ttv_get_auth_token
 from ttv_network_handler import get_params
 

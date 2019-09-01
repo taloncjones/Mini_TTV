@@ -1,6 +1,8 @@
-from flask import redirect, request
-import requests
 import logging
+
+import requests
+from flask import redirect, request
+
 
 # Create header for client-id
 def create_client_header(client_id):

@@ -1,14 +1,11 @@
 import logging
-import json
-import random
-import string
-from flask import Flask, redirect, url_for, request
+
+from flask import Flask, redirect, url_for
 from flask import session as login_session
-import requests
-from ttv_credentials import load_client_id, load_client_secret, get_user_auth, get_auth_token, user_disconnect
-from ttv_json_handler import combine_json
-from ttv_network_handler import create_auth_header, create_client_header
+
 from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
+from ttv_credentials import load_client_id, get_user_auth, get_auth_token, user_disconnect
+from ttv_json_handler import combine_json
 
 logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
