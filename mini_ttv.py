@@ -42,11 +42,13 @@ def home_page():
     json_streams = ttv_top_streams(client_id)
     json_games = ttv_top_games(client_id)
     if 'state' in login_session:
-        login_session['login'], login_session['user_id'] = ttv_validate_token(login_session['access_token'])
-        if login_session['user_id']:
+        try:
+            login_session['login'], login_session['user_id'] = ttv_validate_token(login_session['access_token'])
             json_follows = ttv_live_follows(login_session['user_id'], client_id)
-        else:
+        except Exception as e:
+            logging.debug("Error: %s" % e)
             disconnect()
+
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
                         streams=json_streams, games=json_games,
                         follows=json_follows if 'state' in login_session else '')
