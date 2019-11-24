@@ -2,6 +2,17 @@
 
 </head>
 <body>
-    <h1>Hello</h1>
-    {{ json }}
+    <div id="top_streams" class="top_streams">
+        <h3>Streams</h3>
+        {% for stream in json['streams']['data'] %}
+            <div class="stream">
+                {% for category in stream %}
+                    <ul>
+                        {{ category }} : {{ stream[category] }}
+                    </ul>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
 </body>
