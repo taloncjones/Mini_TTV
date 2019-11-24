@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 from flask import session as login_session
 
 from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
@@ -71,7 +71,7 @@ def json():
 # Home page
 @app.route('/')
 def home_page():
-    return ""
+    return render_template('home.html', json=json())
 
 
 if __name__ == '__main__':
