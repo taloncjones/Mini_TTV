@@ -59,12 +59,19 @@ def follows():
             disconnect()
     return {}
 
-# Home page
+
+# Combine all json responses
 @app.route('/json')
-def home_page():
+def json():
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
                         streams=streams(), games=games(),
                         follows=follows())
+
+
+# Home page
+@app.route('/')
+def home_page():
+    return ""
 
 
 if __name__ == '__main__':
