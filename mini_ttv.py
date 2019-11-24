@@ -47,23 +47,24 @@ def games():
     return ttv_top_games(client_id=load_client_id())
 
 
-# Home page
-@app.route('/json')
-def home_page():
-    client_id = load_client_id()
-    json_streams = ttv_top_streams(client_id)
-    json_games = ttv_top_games(client_id)
+# Follows
+@app.route('/follows/json')
+def follows():
     if 'state' in login_session:
         try:
             login_session['login'], login_session['user_id'] = ttv_validate_token(login_session['access_token'])
-            json_follows = ttv_live_follows(login_session['user_id'], client_id)
+            return ttv_live_follows(login_session['user_id'], client_id=load_client_id())
         except Exception as e:
             logging.debug("Error: %s" % e)
             disconnect()
+    return {}
 
+# Home page
+@app.route('/json')
+def home_page():
     return combine_json(state=login_session['state'] if 'state' in login_session else '',
-                        streams=json_streams, games=json_games,
-                        follows=json_follows if 'state' in login_session else '')
+                        streams=streams(), games=games(),
+                        follows=follows())
 
 
 if __name__ == '__main__':
