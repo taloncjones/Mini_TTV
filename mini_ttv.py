@@ -35,6 +35,12 @@ def disconnect():
     return redirect(url_for('home_page'))
 
 
+# Top streams
+@app.route('/streams/json')
+def streams():
+    return ttv_top_streams(client_id=load_client_id())
+
+
 # Home page
 @app.route('/json')
 def home_page():
