@@ -14,5 +14,17 @@
             </div>
         {% endfor %}
     </div>
+    <div id="top_games" class="top_games">
+        <h3>Games</h3>
+        {% for game in json['games']['data'] %}
+        <div class="stream">
+            {% for category in game %}
+            <ul>
+                {{ category }} : {{ game[category] }}
+            </ul>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
 
 </body>
