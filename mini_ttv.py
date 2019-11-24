@@ -41,6 +41,12 @@ def streams():
     return ttv_top_streams(client_id=load_client_id())
 
 
+# Top games
+@app.route('/games/json')
+def games():
+    return ttv_top_games(client_id=load_client_id())
+
+
 # Home page
 @app.route('/json')
 def home_page():
