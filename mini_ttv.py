@@ -15,6 +15,10 @@ app = Flask(__name__)
 APPLICATION_NAME = 'Mini_TTV'
 
 
+def state():
+    return login_session['state'] if 'state' in login_session else ''
+
+
 # Log in handler with random state generator
 @app.route('/login')
 def login():
@@ -63,9 +67,7 @@ def follows():
 # Combine all json responses
 @app.route('/json')
 def json():
-    return combine_json(state=login_session['state'] if 'state' in login_session else '',
-                        streams=streams(), games=games(),
-                        follows=follows())
+    return combine_json(state=state(), streams=streams(), games=games(), follows=follows())
 
 
 # Home page
