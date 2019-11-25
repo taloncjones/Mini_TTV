@@ -4,7 +4,7 @@
 <body>
     <div id="top_streams" class="top_streams">
         <h3>Streams</h3>
-        {% for stream in json['streams']['data'] %}
+        {% for stream in streams['data'] %}
             <div class="stream">
                 {% for category in stream %}
                     <ul>
@@ -16,14 +16,14 @@
     </div>
     <div id="top_games" class="top_games">
         <h3>Games</h3>
-        {% for game in json['games']['data'] %}
-        <div class="stream">
-            {% for category in game %}
-            <ul>
-                {{ category }} : {{ game[category] }}
-            </ul>
-            {% endfor %}
-        </div>
+        {% for game in games['data'] %}
+            <div class="stream">
+                {% for category in game %}
+                <ul>
+                    {{ category }} : {{ game[category] }}
+                </ul>
+                {% endfor %}
+            </div>
         {% endfor %}
     </div>
 

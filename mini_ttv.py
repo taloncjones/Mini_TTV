@@ -73,7 +73,7 @@ def json():
 # Home page
 @app.route('/')
 def home_page():
-    return render_template('home.html', json=json())
+    return render_template('home.html', state=state(), streams=streams(), games=games(), follows=follows())
 
 
 if __name__ == '__main__':
