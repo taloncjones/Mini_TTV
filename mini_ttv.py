@@ -2,6 +2,7 @@ import logging
 
 from flask import Flask, redirect, url_for, render_template
 from flask import session as login_session
+from flask_cors import CORS
 
 from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
 from ttv_credentials import load_client_id, get_user_auth, get_auth_token, user_disconnect
@@ -11,6 +12,7 @@ logging.basicConfig(filename='ttv_notifications.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
+CORS(app)
 
 APPLICATION_NAME = 'Mini_TTV'
 
