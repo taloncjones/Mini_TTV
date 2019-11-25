@@ -1,6 +1,9 @@
 # Ignore log files
 *.log
 
+# Ignore secrets
+ttv_client_secrets.json
+
 # Ignore venv directory
 venv/
 
