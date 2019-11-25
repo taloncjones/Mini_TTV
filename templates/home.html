@@ -26,5 +26,21 @@
             </div>
         {% endfor %}
     </div>
+    {% if state %}
+        <div id="follows" class="follows">
+            <h3>Follows</h3>
+            {% for page in follows %}
+                {% for follow in follows[page] %}
+                    <ul>
+                        {{ page }} : {{ follow }}
+                    </ul>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div id="follows" class=""follows">
+            <h3>Please log in</h3>
+        </div>
+    {% endif %}
 
 </body>
