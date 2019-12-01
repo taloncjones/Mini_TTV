@@ -8,6 +8,10 @@ export class StreamItem extends Component {
     return tmp
   }
 
+  getViewerCount(num) {
+    return num >= 1000 ? (num/1000).toFixed(1) + 'k' : num
+  }
+
   render() {
     return (
       <div style={streamStyle}>
@@ -16,7 +20,7 @@ export class StreamItem extends Component {
           {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
         </div>
         <div style={viewerStyle}>
-          {this.props.stream.viewer_count}
+          {this.getViewerCount(this.props.stream.viewer_count)}
         </div>
         <StreamInfo info={this.props.stream} />
       </div>
