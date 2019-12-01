@@ -33,6 +33,7 @@ const streamStyle = {
   padding: '10px',
   color: '#fff',
   position: 'relative',
+  width: '25%'
 }
 
 const liveStyle = {
