@@ -17,3 +17,34 @@ a {
 img {
   max-width: 100%;
 }
+
+.stream-card {
+  background-color: #333;
+  padding: 10px;
+  color: #fff;
+  position: relative;
+  max-width: 25%;
+  flex: 0 1 auto;
+}
+
+.stream-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stream-info {
+  position: absolute;
+  top: 1rem;
+  padding: 0 5px;
+  border-radius: .5rem;
+}
+
+.status {
+  left: 1rem;
+  background-color: red;
+}
+
+.viewers {
+  right: 1rem;
+  background-color: grey;
+}

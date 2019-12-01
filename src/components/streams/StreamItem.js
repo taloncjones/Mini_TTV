@@ -14,44 +14,18 @@ export class StreamItem extends Component {
 
   render() {
     return (
-      <div style={streamStyle}>
+      <div className="stream-card">
         <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
-        <div style={liveStyle}>
+        <div className="stream-info status">
           {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
         </div>
-        <div style={viewerStyle}>
+        <div className="stream-info viewers">
           {this.getViewerCount(this.props.stream.viewer_count)}
         </div>
         <StreamInfo info={this.props.stream} />
       </div>
     )
   }
-}
-
-const streamStyle = {
-  backgroundColor: '#333',
-  padding: '10px',
-  color: '#fff',
-  position: 'relative',
-  width: '25%'
-}
-
-const liveStyle = {
-  position: 'absolute',
-  top: '16px',
-  left: '16px',
-  padding: '0 5px',
-  backgroundColor: 'red',
-  borderRadius: '8px'
-}
-
-const viewerStyle = {
-  position: 'absolute',
-  top: '16px',
-  right: '16px',
-  padding: '0 5px',
-  backgroundColor: 'grey',
-  borderRadius: '8px'
 }
 
 export default StreamItem

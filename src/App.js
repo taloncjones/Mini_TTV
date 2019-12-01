@@ -26,7 +26,9 @@ class App extends Component {
           <div className="container">
             <Header />
             <Route exact path="/">
-              <TopStreams streams={this.state.streams} />
+              <div className="stream-list">
+                <TopStreams streams={this.state.streams} />
+              </div>
             </Route>
             <Route path="/about" component={About} />
           </div>
