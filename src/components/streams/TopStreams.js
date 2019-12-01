@@ -5,7 +5,7 @@ class TopStreams extends Component {
   render() {
     console.log(this.props.streams)
     return this.props.streams.map((stream) => (
-      <StreamItem stream={stream} />
+      <StreamItem key={stream.id} stream={stream} />
     ))
   }
 }
