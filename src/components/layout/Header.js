@@ -5,7 +5,7 @@ function Header() {
   return (
     <header style={headerStyle}>
       <h1>Mini TTV</h1>
-      <Link style={linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link> | <Link style={linkStyle} to="127.0.0.1/login">Log In/Out</Link>
+      <Link style={linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link> | <Link style={linkStyle} to={"//127.0.0.1/login"} target="_blank">Log In/Out</Link>
     </header>
   )
 }
