@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import StreamInfo from './SteamInfo';
+import { relative, isAbsolute } from 'path';
 
 export class StreamItem extends Component {
   getThumbnail(url) {
@@ -10,8 +12,9 @@ export class StreamItem extends Component {
   render() {
     return (
       <div style={streamStyle}>
-        <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt=""/>
-        <p>{this.props.stream.title}</p>
+        <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
+        <div style={liveStyle}>{this.props.type}</div>
+        <StreamInfo info={this.props.stream} />
       </div>
     )
   }
@@ -20,7 +23,17 @@ export class StreamItem extends Component {
 const streamStyle = {
   backgroundColor: '#333',
   padding: '10px',
-  borderBottom: '1px #ccc solid',
+  color: '#fff',
+  position: 'relative',
+}
+
+const liveStyle = {
+  position: 'absolute',
+  top: '16px',
+  left: '16px',
+  padding: '0px 5px',
+  backgroundColor: 'red',
+  borderRadius: '8px'
 }
 
 export default StreamItem
