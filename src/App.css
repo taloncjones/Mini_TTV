@@ -29,10 +29,25 @@ img {
   flex: 0 1 auto;
 }
 
-.stream-info {
-  padding: 0 5px 5px 5px;
+.stream-info-card {
   color: #fff;
   display: flex;
+  flex-wrap: nowrap;
+}
+
+.stream-info-profile-box {
+  overflow: hidden;
+  width: 3rem;
+}
+
+.stream-info-profile-container {
+  flex: 0 0 auto;
+  margin-right: 5px;
+}
+
+.stream-info-profile-image {
+  display: block;
+  border-radius: 50%;
 }
 
 .stream-list {

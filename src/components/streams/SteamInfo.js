@@ -13,8 +13,17 @@ export class SteamInfo extends Component {
 
   render() {
     return (
-      <div className="stream-info">
-        <img className="stream-profile" src={this.state.info.profile_image_url} alt="" />
+      <div className="stream-info-card">
+        <div className="stream-info-profile-container">
+          <a href={"//twitch.com/" + this.state.info.display_name}>
+            <div className="stream-info-profile-box">
+              <img className="stream-info-profile-image" src={this.state.info.profile_image_url} alt="" />
+            </div>
+          </a>
+        </div>
+        <div className="stream-info-text-container">
+          <p>{this.state.info.description}</p>
+        </div>
       </div>
     )
   }
