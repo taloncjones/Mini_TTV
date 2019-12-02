@@ -22,7 +22,7 @@ export class StreamItem extends Component {
         <div className="stream-info viewers">
           {this.getViewerCount(this.props.stream.viewer_count)}
         </div>
-        <StreamInfo info={this.props.stream} />
+        <StreamInfo stream={this.props.stream} />
       </div>
     )
   }
