@@ -42,19 +42,19 @@ def disconnect():
 
 
 # Top streams
-@app.route('/streams/json')
+@app.route('/streams')
 def streams():
     return ttv_top_streams(client_id=load_client_id())
 
 
 # Top games
-@app.route('/games/json')
+@app.route('/games')
 def games():
     return ttv_top_games(client_id=load_client_id())
 
 
 # Follows
-@app.route('/follows/json')
+@app.route('/follows')
 def follows():
     if 'state' in login_session:
         try:
