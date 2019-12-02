@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('//127.0.0.1/streams/json')
+    axios.get('//127.0.0.1/streams')
       .then(res => this.setState({ streams: res.data['data'] }))
   }
 
