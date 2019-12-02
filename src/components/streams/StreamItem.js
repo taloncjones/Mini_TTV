@@ -16,10 +16,10 @@ export class StreamItem extends Component {
     return (
       <div className="stream-card">
         <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
-        <div className="stream-info status">
+        <div className="stream-overlay status">
           {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
         </div>
-        <div className="stream-info viewers">
+        <div className="stream-overlay viewers">
           {this.getViewerCount(this.props.stream.viewer_count)}
         </div>
         <StreamInfo stream={this.props.stream} />

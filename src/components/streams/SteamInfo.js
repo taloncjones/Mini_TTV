@@ -13,8 +13,8 @@ export class SteamInfo extends Component {
 
   render() {
     return (
-      <div>
-        <img src={this.state.info.profile_image_url} alt="" />
+      <div className="stream-info">
+        <img className="stream-profile" src={this.state.info.profile_image_url} alt="" />
       </div>
     )
   }

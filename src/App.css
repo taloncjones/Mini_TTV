@@ -22,11 +22,17 @@ img {
 
 .stream-card {
   background-color: #333;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   color: #fff;
   position: relative;
   max-width: 25%;
   flex: 0 1 auto;
+}
+
+.stream-info {
+  padding: 0 5px 5px 5px;
+  color: #fff;
+  display: flex;
 }
 
 .stream-list {
@@ -34,11 +40,17 @@ img {
   flex-wrap: wrap;
 }
 
-.stream-info {
+.stream-overlay {
   position: absolute;
   top: 1rem;
   padding: 0 5px;
   border-radius: .5rem;
+}
+
+.stream-profile {
+  border-radius: 50%;
+  max-width: 20%;
+  flex: 0 1 auto;
 }
 
 .status {
