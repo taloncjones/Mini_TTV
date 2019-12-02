@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for, render_template
 from flask import session as login_session
 from flask_cors import CORS
 
-from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams
+from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams, ttv_get_user_info
 from ttv_credentials import load_client_id, get_user_auth, get_auth_token, user_disconnect
 from ttv_json_handler import combine_json
 
@@ -42,19 +42,19 @@ def disconnect():
 
 
 # Top streams
-@app.route('/streams/json')
+@app.route('/streams')
 def streams():
     return ttv_top_streams(client_id=load_client_id())
 
 
 # Top games
-@app.route('/games/json')
+@app.route('/games')
 def games():
     return ttv_top_games(client_id=load_client_id())
 
 
 # Follows
-@app.route('/follows/json')
+@app.route('/follows')
 def follows():
     if 'state' in login_session:
         try:
@@ -64,6 +64,12 @@ def follows():
             logging.debug("Error: %s" % e)
             disconnect()
     return {}
+
+
+# User info
+@app.route('/user/<int:user_id>')
+def user(user_id):
+    return ttv_get_user_info(client_id=load_client_id(), user_id=user_id)
 
 
 # Combine all json responses

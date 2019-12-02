@@ -11,6 +11,7 @@ GAMES_URL = "https://api.twitch.tv/helix/games/top?"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
+USER_URL = "https://api.twitch.tv/helix/users?id="
 
 
 def ttv_validate_token(token):
@@ -28,6 +29,12 @@ def ttv_get_auth_token(client_id, client_secret, code):
     url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, client_id, client_secret, code)
     logging.debug("URL: %s" % url)
     return url_post_json(url)
+
+
+def ttv_get_user_info(client_id, user_id):
+    url = f"{USER_URL}{user_id}"
+    logging.debug(f"User lookup: {url}")
+    return url_get_json(url, create_client_header(client_id))
 
 
 def ttv_total_follows(user_id, client_id):
