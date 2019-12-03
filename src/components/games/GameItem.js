@@ -22,10 +22,12 @@ export class GameItem extends Component {
   }
 
   render() {
-    console.log(this.props.game)
+    console.log(this.state.info)
     return (
-      <div>
-        <img src={this.getThumbnail(this.props.game.box_art_url)} alt="" />
+      <div className="game-card">
+        <a href={"//twitch.tv/directory/game/" + this.props.game.name} className="no-hover" >
+          <img src={this.getThumbnail(this.props.game.box_art_url)} alt="" />
+        </a>
       </div>
     )
   }
