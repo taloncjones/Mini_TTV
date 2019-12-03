@@ -16,8 +16,25 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  padding: .4rem;
+}
+
 img {
   max-width: 100%;
+}
+
+p {
+  margin-bottom: .5rem;
+}
+
+.about-page {
+  text-align: center;
+}
+
+.about-container {
+  max-width: 50%;
+  margin: 5px auto;
 }
 
 .header {
