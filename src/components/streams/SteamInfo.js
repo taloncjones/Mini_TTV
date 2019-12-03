@@ -35,7 +35,7 @@ export class SteamInfo extends Component {
               {this.state.info.display_name}
             </a>
             <br/>
-            <a href={"//twitch.com/" + this.state.game.name}>
+            <a href={"//twitch.tv/directory/game/" + this.state.game.name}>
               {this.state.game.name}
             </a>
           </div>
