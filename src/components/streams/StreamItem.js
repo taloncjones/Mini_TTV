@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import StreamInfo from './SteamInfo';
+import axios from 'axios';
 
 export class StreamItem extends Component {
+  state = {
+    info: [],
+    game: []
+  }
+
+  componentDidMount() {
+    axios.get('//127.0.0.1/user/' + this.props.stream.user_id)
+      .then(res => this.setState({ info: res.data['data'][0] }))
+    axios.get('//127.0.0.1/game/' + this.props.stream.game_id)
+      .then(res => this.setState({ game: res.data['data'][0] }))
+  }
+  
   getThumbnail(url) {
     var tmp = url.replace('{width}', '440')
     tmp = tmp.replace('{height}', '248')
@@ -22,7 +35,7 @@ export class StreamItem extends Component {
         <div className="stream-overlay viewers">
           {this.getViewerCount(this.props.stream.viewer_count)}
         </div>
-        <StreamInfo stream={this.props.stream} />
+        <StreamInfo info={this.state.info} game={this.state.game} />
       </div>
     )
   }
