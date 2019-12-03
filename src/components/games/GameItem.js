@@ -1,6 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 export class GameItem extends Component {
+  state = {
+    info: []
+  }
+
+  componentDidMount() {
+    axios.get('//127.0.0.1/game_info/' + this.props.game.id)
+      .then(res => this.setState({ info: res.data['data'][0] }))
+  }
+
   getThumbnail(url) {
     var tmp = url.replace('{width}', '285')
     tmp = tmp.replace('{height}', '380')
