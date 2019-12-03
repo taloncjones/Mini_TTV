@@ -14,7 +14,7 @@ export class StreamItem extends Component {
     axios.get('//127.0.0.1/game/' + this.props.stream.game_id)
       .then(res => this.setState({ game: res.data['data'][0] }))
   }
-  
+
   getThumbnail(url) {
     var tmp = url.replace('{width}', '440')
     tmp = tmp.replace('{height}', '248')
@@ -22,19 +22,21 @@ export class StreamItem extends Component {
   }
 
   getViewerCount(num) {
-    return num >= 1000 ? (num/1000).toFixed(1) + 'k' : num
+    return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num
   }
 
   render() {
     return (
       <div className="stream-card">
-        <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
-        <div className="stream-overlay status">
-          {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
-        </div>
-        <div className="stream-overlay viewers">
-          {this.getViewerCount(this.props.stream.viewer_count)}
-        </div>
+        <a href={"//twitch.com/" + this.state.info.display_name}>
+          <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
+          <div className="stream-overlay status">
+            {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
+          </div>
+          <div className="stream-overlay viewers">
+            {this.getViewerCount(this.props.stream.viewer_count)}
+          </div>
+        </a>
         <StreamInfo info={this.state.info} game={this.state.game} />
       </div>
     )
