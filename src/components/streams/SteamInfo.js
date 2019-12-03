@@ -22,7 +22,7 @@ export class SteamInfo extends Component {
           </a>
         </div>
         <div className="stream-info-text-container">
-          <a href="">
+          <a href={"//twitch.com/" + this.state.info.display_name}>
             <div className="stream-info-text-title">
               {this.state.info.description}
             </div>
