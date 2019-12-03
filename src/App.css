@@ -64,6 +64,11 @@ img {
   white-space: nowrap;
 }
 
+.stream-info-text-minor a{
+  color: #ccc;
+  font-size: .8rem;
+}
+
 .stream-list {
   display: flex;
   flex-wrap: wrap;
