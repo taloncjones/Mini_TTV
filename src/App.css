@@ -11,9 +11,13 @@ body {
   color: #fff;
 }
 
-a {
+a, a.no-hover:hover {
   color: #fff;
   text-decoration: none;
+}
+
+a:hover, .stream-info-text-minor a:hover {
+  color: rgb(140, 72, 204)
 }
 
 h1 {
@@ -88,7 +92,7 @@ p {
   white-space: nowrap;
 }
 
-.stream-info-text-minor a{
+.stream-info-text-minor a {
   color: #ccc;
   font-size: .8rem;
 }
