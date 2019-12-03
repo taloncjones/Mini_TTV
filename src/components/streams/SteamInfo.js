@@ -3,12 +3,15 @@ import axios from 'axios';
 
 export class SteamInfo extends Component {
   state = {
-    info: []
+    info: [],
+    game: []
   }
 
   componentDidMount() {
     axios.get('//127.0.0.1/user/' + this.props.stream.user_id)
       .then(res => this.setState({ info: res.data['data'][0] }))
+    axios.get('//127.0.0.1/game/' + this.props.stream.game_id)
+      .then(res => this.setState({ game: res.data['data'][0] }))
   }
 
   render() {
@@ -27,6 +30,15 @@ export class SteamInfo extends Component {
               {this.state.info.description}
             </div>
           </a>
+          <div>
+            <a href={"//twitch.com/" + this.state.info.display_name}>
+              {this.state.info.display_name}
+            </a>
+            <br/>
+            <a href={"//twitch.com/" + this.state.game.name}>
+              {this.state.game.name}
+            </a>
+          </div>
         </div>
       </div>
     )
