@@ -20,6 +20,13 @@ img {
   max-width: 100%;
 }
 
+.header {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
 .stream-card {
   background-color: #333;
   margin-bottom: 1rem;
