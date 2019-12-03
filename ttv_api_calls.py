@@ -44,6 +44,12 @@ def ttv_get_game_info(client_id, game_id):
     return url_get_json(url, create_client_header(client_id))
 
 
+def ttv_get_game_viewer_info(client_id, game_id):
+    url = f"{STREAMS_URL}game_id={game_id}&first=100"
+    logging.debug(f"Game viewer count lookup: {url}")
+    return url_get_json(url, create_client_header(client_id))
+
+
 def ttv_total_follows(user_id, client_id):
     url = "%s%s&first=1" % (FOLLOWS_URL, user_id)
     return url_get_json(url, create_client_header(client_id))['total']
