@@ -22,7 +22,11 @@ export class SteamInfo extends Component {
           </a>
         </div>
         <div className="stream-info-text-container">
-          <p>{this.state.info.description}</p>
+          <a href="">
+            <div className="stream-info-text-title">
+              {this.state.info.description}
+            </div>
+          </a>
         </div>
       </div>
     )
