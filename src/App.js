@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
+import Stream from './components/pages/Stream';
 import TopStreams from './components/streams/TopStreams';
 import TopGames from './components/games/TopGames';
 
@@ -29,6 +30,9 @@ class App extends Component {
           <div className="container">
             <Header />
             <Route exact path="/">
+              <div className="stream-container">
+                <Stream />
+              </div>
               <div className="stream-list">
                 <TopStreams streams={this.state.streams} />
               </div>
