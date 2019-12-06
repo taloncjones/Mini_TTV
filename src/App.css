@@ -48,7 +48,7 @@ p {
   padding: 10px;
 }
 
-.stream-card {
+.stream-card, .game-card {
   background-color: #333;
   margin-bottom: 1rem;
   padding: 0 .5rem;
@@ -56,6 +56,10 @@ p {
   position: relative;
   max-width: 30%;
   flex: 0 1 auto;
+}
+
+.game-card {
+  max-width: 20%;
 }
 
 .stream-info-card {
