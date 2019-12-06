@@ -13,7 +13,6 @@ export class GameItem extends Component {
         this.setState({ info: res.data['data'] })
         var i;
         var t = 0;
-        console.log(this.state.info)
         for(i = 0; i < this.state.info.length; i++) {
           t += this.state.info[i]['viewer_count'];
         }
@@ -32,7 +31,6 @@ export class GameItem extends Component {
   }
 
   render() {
-    console.log(this.state.info)
     return (
       <div className="game-card">
         <a href={"//twitch.tv/directory/game/" + this.props.game.name} className="no-hover" >

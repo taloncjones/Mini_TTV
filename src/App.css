@@ -101,7 +101,7 @@ p {
   font-size: .8rem;
 }
 
-.stream-list {
+.stream-list, .game-list {
   display: flex;
   flex-wrap: wrap;
 }
