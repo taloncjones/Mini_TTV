@@ -23,7 +23,6 @@ Stream.defaultProps = {
   targetID: 'twitch-embed',
   width: '940',
   height: '480',
-  channel: 'monstercat'
 }
 
 export default Stream
