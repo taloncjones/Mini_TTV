@@ -13,14 +13,21 @@ class App extends Component {
   state = {
     streams: [],
     games: [],
-    follows: []
+    follows: [],
+    state: '',
   }
 
   componentDidMount() {
-    axios.get('//127.0.0.1/streams')
-      .then(res => this.setState({ streams: res.data['data'] }))
-    axios.get('//127.0.0.1/games')
-      .then(res => this.setState({ games: res.data['data'] }))
+    axios.get('//127.0.0.1/json')
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          streams: res.data['streams']['data'],
+          games: res.data['games']['data'],
+          follows: res.data['follows'],
+          state: res.data['login']
+        })
+      })
   }
 
   render() {
