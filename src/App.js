@@ -31,9 +31,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/about" component={About} />
-              <Route path="/:stream">
-                <Stream />
-              </Route>
+              <Route path="/:stream" component={Stream} />
               <Route path="/">
                 <TopStreams streams={this.state.streams} />
                 <TopGames games={this.state.games} />
