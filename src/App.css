@@ -24,6 +24,10 @@ h1 {
   padding: .4rem;
 }
 
+iframe {
+  max-width: 100%;
+}
+
 img {
   max-width: 100%;
 }
@@ -46,6 +50,17 @@ p {
   color: #fff;
   text-align: center;
   padding: 10px;
+}
+
+.stream {
+  margin: .5rem auto;
+  flex: 1 1 auto;
+}
+
+.stream-container {
+  text-align: center;
+  display: flex;
+  flex-flow: column;
 }
 
 .stream-card, .game-card {
