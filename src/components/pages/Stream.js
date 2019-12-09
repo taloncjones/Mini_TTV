@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-class Stream extends React.Component {
+class Stream extends Component {
+
   componentDidMount() {
     const script = document.createElement('script');
     script.setAttribute('src', 'https://embed.twitch.tv/embed/v1.js');
@@ -12,7 +13,7 @@ class Stream extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="stream-container">
         <div className="stream" id={this.props.targetID}></div>
       </div>
     )

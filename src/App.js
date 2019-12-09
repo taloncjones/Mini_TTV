@@ -32,9 +32,7 @@ class App extends Component {
             <Switch>
               <Route path="/about" component={About} />
               <Route path="/:stream">
-                <div className="stream-container">
-                  <Stream />
-                </div>
+                <Stream />
               </Route>
               <Route path="/">
                 <TopStreams streams={this.state.streams} />
