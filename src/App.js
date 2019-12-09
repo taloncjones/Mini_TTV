@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
@@ -29,18 +29,18 @@ class App extends Component {
         <div className="App">
           <div className="container">
             <Header />
-            <Route exact path="/">
-              <div className="stream-container">
-                <Stream />
-              </div>
-              <div className="stream-list">
+            <Switch>
+              <Route path="/about" component={About} />
+              <Route path="/:stream">
+                <div className="stream-container">
+                  <Stream />
+                </div>
+              </Route>
+              <Route path="/">
                 <TopStreams streams={this.state.streams} />
-              </div>
-              <div className="game-list">
                 <TopGames games={this.state.games} />
-              </div>
-            </Route>
-            <Route path="/about" component={About} />
+              </Route>
+            </Switch>
           </div>
         </div>
       </Router>

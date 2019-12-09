@@ -3,9 +3,13 @@ import StreamItem from './StreamItem'
 
 class TopStreams extends Component {
   render() {
-    return this.props.streams.map((stream) => (
-      <StreamItem key={stream.id} stream={stream} />
-    ))
+    return (
+      <div className="stream-list">
+        {this.props.streams.map((stream) => (
+          <StreamItem key={stream.id} stream={stream} />
+        ))}
+      </div>
+    )
   }
 }
 
