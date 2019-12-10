@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
 from flask import session as login_session
 from flask_cors import CORS
 
@@ -21,6 +21,13 @@ def state():
     return login_session['state'] if 'state' in login_session else ''
 
 
+# Add Access-Control-Allow-Credentials header
+@app.after_request
+def add_header(resp):
+    resp.headers['Access-Control-Allow-Credentials'] = 'true'
+    return resp
+
+
 # Log in handler with random state generator
 @app.route('/login')
 def login():
@@ -31,7 +38,7 @@ def login():
 @app.route('/auth')
 def authenticate():
     get_auth_token()
-    return redirect(url_for('home_page'))
+    return redirect(request.headers.get("Referer"))
 
 
 # Log out handler
@@ -39,6 +46,12 @@ def authenticate():
 def disconnect():
     user_disconnect()
     return redirect(url_for('home_page'))
+
+
+# Check cookie data
+@app.route('/whoami')
+def who_am_i():
+    return state()
 
 
 # Top streams
@@ -99,4 +112,5 @@ def home_page():
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
+    app.session_cookie_name = "MiniTTV"
     app.run(host='0.0.0.0', port=80)
