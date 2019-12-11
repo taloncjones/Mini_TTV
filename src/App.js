@@ -49,11 +49,6 @@ class App extends Component {
   }
 
   render() {
-    // axios.get('//127.0.01/whoami', { withCredentials: true })
-    // .then(res => {
-    //   this.setState({ id: res.data })
-    // })
-
     return (
       <Router>
         <div className="App">
