@@ -14,23 +14,27 @@ class App extends Component {
     streams: [],
     games: [],
     follows: [],
-    state: '',
+    id: '',
   }
 
   componentDidMount() {
-    axios.get('//127.0.0.1/json')
+    axios.get('//127.0.0.1/json', { withCredentials: true })
       .then(res => {
-        console.log(res.data)
         this.setState({
           streams: res.data['streams']['data'],
           games: res.data['games']['data'],
           follows: res.data['follows'],
-          state: res.data['login']
+          id: res.data['login']
         })
       })
   }
 
   render() {
+    // axios.get('//127.0.01/whoami', { withCredentials: true })
+    // .then(res => {
+    //   this.setState({ id: res.data })
+    // })
+
     return (
       <Router>
         <div className="App">
