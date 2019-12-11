@@ -3,9 +3,12 @@ import StreamInfo from './SteamInfo';
 import axios from 'axios';
 
 export class StreamItem extends Component {
-  state = {
-    info: [],
-    game: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      info: [],
+      game: []
+    };
   }
 
   componentDidMount() {

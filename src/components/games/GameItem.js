@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export class GameItem extends Component {
-  state = {
-    info: [],
-    total: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      info: [],
+      total: 0
+    };
   }
 
   componentDidMount() {
@@ -13,7 +16,7 @@ export class GameItem extends Component {
         this.setState({ info: res.data['data'] })
         var i;
         var t = 0;
-        for(i = 0; i < this.state.info.length; i++) {
+        for (i = 0; i < this.state.info.length; i++) {
           t += this.state.info[i]['viewer_count'];
         }
         this.setState({ total: this.getViewerCount(t) })
