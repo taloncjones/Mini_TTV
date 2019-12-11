@@ -39,15 +39,23 @@ def login():
 @app.route('/auth')
 def authenticate():
     get_auth_token()
-    referer = login_session['referer']
-    return redirect(referer)
+    if 'referer' in login_session and login_session['referer']:
+        return redirect(login_session['referer'])
+    else:
+        return redirect(url_for('home_page'))
 
 
 # Log out handler
 @app.route('/disconnect')
 def disconnect():
+    referer = request.headers.get("Referer")
+    if 'referer' in login_session:
+        referer = login_session['referer']
     user_disconnect()
-    return redirect(request.headers.get("Referer"))
+    if referer:
+        return redirect(referer)
+    else:
+        return redirect(url_for('home_page'))
 
 
 # Check cookie data
