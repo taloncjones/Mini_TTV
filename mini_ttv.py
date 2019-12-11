@@ -31,6 +31,7 @@ def add_header(resp):
 # Log in handler with random state generator
 @app.route('/login')
 def login():
+    login_session['referer'] = request.headers.get("Referer")
     return get_user_auth()
 
 
@@ -38,7 +39,8 @@ def login():
 @app.route('/auth')
 def authenticate():
     get_auth_token()
-    return redirect(request.headers.get("Referer"))
+    referer = login_session['referer']
+    return redirect(referer)
 
 
 # Log out handler
