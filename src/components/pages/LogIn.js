@@ -16,8 +16,9 @@ class LogIn extends Component {
         <div className="about-container">
           <h1>Log Out/In</h1>
           <p>{this.props.id}</p>
-          <button onClick={this.onClick}>Log In</button>
-          <Link to={"//127.0.0.1/disconnect"}>Log Out</Link>
+          <a href={"//127.0.0.1/login"}>Log In</a>
+          <br />
+          <a href={"//127.0.0.1/disconnect"}>Log Out</a>
         </div>
       </div>
     )
