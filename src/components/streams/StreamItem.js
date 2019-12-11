@@ -31,7 +31,7 @@ export class StreamItem extends Component {
   render() {
     return (
       <div className="stream-card">
-        <a href={"//twitch.com/" + this.state.info.display_name} className="no-hover">
+        <a href={"/" + this.state.info.display_name} className="no-hover">
           <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
           <div className="stream-overlay status">
             {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
