@@ -58,8 +58,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container">
-            <Header />
+            <Header id={this.state.id} />
             <Switch>
+              <Route path="/login">
+                <LogIn id={this.state.id} />
+              </Route>
               <Route path="/about" component={About} />
               <Route path="/:stream" component={Stream} />
               <Route path="/">
