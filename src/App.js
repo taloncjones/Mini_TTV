@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
+import LogIn from './components/pages/LogIn';
 import Stream from './components/pages/Stream';
 import TopStreams from './components/streams/TopStreams';
 import TopGames from './components/games/TopGames';
@@ -10,14 +11,19 @@ import TopGames from './components/games/TopGames';
 import './App.css';
 
 class App extends Component {
-  state = {
-    streams: [],
-    games: [],
-    follows: [],
-    id: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      streams: [],
+      games: [],
+      follows: [],
+      id: '',
+      isFetching: false,
+    };
   }
 
-  componentDidMount() {
+  fetchData() {
+    this.setState({ isFetching: true })
     axios.get('//127.0.0.1/json', { withCredentials: true })
       .then(res => {
         this.setState({
@@ -27,6 +33,19 @@ class App extends Component {
           id: res.data['login']
         })
       })
+    this.setState({ isFetching: false })
+  }
+
+  componentDidMount() {
+    this.fetchData();
+    this.timer = setInterval(() => {
+      this.fetchData()
+    }, 60000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    this.timer = null;
   }
 
   render() {
