@@ -45,7 +45,7 @@ def authenticate():
 @app.route('/disconnect')
 def disconnect():
     user_disconnect()
-    return redirect(url_for('home_page'))
+    return redirect(request.headers.get("Referer"))
 
 
 # Check cookie data
