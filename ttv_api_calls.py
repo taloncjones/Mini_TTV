@@ -1,6 +1,6 @@
 import logging
 
-from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_get_json, url_post_json
+from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_get_json, url_post_json, create_bearer_header
 
 OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
             "&redirect_uri=http://127.0.0.1/auth" \
@@ -12,6 +12,7 @@ STREAMS_URL = "https://api.twitch.tv/helix/streams?"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
 VALIDATE_URL = "https://id.twitch.tv/oauth2/validate"
 USER_URL = "https://api.twitch.tv/helix/users?id="
+MY_URL = "https://api.twitch.tv/helix/users"
 GAME_URL = "https://api.twitch.tv/helix/games?id="
 
 
@@ -30,6 +31,14 @@ def ttv_get_auth_token(client_id, client_secret, code):
     url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, client_id, client_secret, code)
     logging.debug("URL: %s" % url)
     return url_post_json(url)
+
+
+def ttv_get_my_info(token, client_id):
+    url = f"{MY_URL}"
+    header = create_client_header(client_id)
+    header.update(create_bearer_header(token))
+    logging.debug(f"Self lookup: {url} Header: {header}")
+    return url_get_json(url, header)
 
 
 def ttv_get_user_info(client_id, user_id):

@@ -16,6 +16,12 @@ def create_auth_header(token):
     return header
 
 
+# Create header for bearer token
+def create_bearer_header(token):
+    header = {"Authorization": "Bearer " + token}
+    return header
+
+
 # Redirect to URL
 def url_redirect(url):
     logging.debug("Redirected to: " + url)

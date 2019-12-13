@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for, render_template, request
 from flask import session as login_session
 from flask_cors import CORS
 
-from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams, ttv_get_user_info, ttv_get_game_info, ttv_get_game_viewer_info
+from ttv_api_calls import ttv_validate_token, ttv_live_follows, ttv_top_games, ttv_top_streams, ttv_get_user_info, ttv_get_game_info, ttv_get_game_viewer_info, ttv_get_my_info
 from ttv_credentials import load_client_id, get_user_auth, get_auth_token, user_disconnect
 from ttv_json_handler import combine_json
 
@@ -61,7 +61,10 @@ def disconnect():
 # Check cookie data
 @app.route('/whoami')
 def who_am_i():
-    return state()
+    if 'state' in login_session:
+        return ttv_get_my_info(token=login_session['access_token'], client_id=load_client_id())
+    else:
+        return
 
 
 # Top streams
