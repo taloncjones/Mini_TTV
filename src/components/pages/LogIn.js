@@ -15,9 +15,7 @@ class LogIn extends Component {
       return (
         <div className="profile-card">
           <h3>Logging in will allow you to view your followed channels.</h3>
-          <a href="//127.0.0.1/login">
-            <button className="log-button">Log In to Twitch TV!</button>
-          </a>
+          <a href="//127.0.0.1/login" className="my-button no-hover">Log In to Twitch TV!</a>
         </div>
       )
     } else {
@@ -32,9 +30,7 @@ class LogIn extends Component {
               </div>
             </a>
           </div>
-          <a href="//127.0.0.1/disconnect">
-            <button className="log-button">Log Out?</button>
-          </a>
+          <a href="//127.0.0.1/disconnect" className="my-button no-hover">Log Out?</a>
         </div>
       )
     }

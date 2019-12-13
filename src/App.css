@@ -24,6 +24,12 @@ h1 {
   padding: .4rem;
 }
 
+h3 {
+  margin-top: 1rem;
+  padding: .4rem;
+  font-size: 1.5rem;
+}
+
 iframe {
   max-width: 100%;
 }
@@ -52,6 +58,24 @@ p {
   padding: 10px;
 }
 
+.my-button {
+  background-color: rgb(140, 72, 204);
+  border-radius:6px;
+  border: 0;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-size:16px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+}
+
+.my-button:active {
+  position:relative;
+  top:1px;
+}
+
 .stream {
   margin: .5rem auto;
   flex: 1 1 auto;
@@ -77,6 +101,22 @@ p {
   max-width: 20%;
 }
 
+.profile-box {
+  width: 6rem;
+  flex: 0 0 auto;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.profile-name {
+  font-size: 2rem;
+  color: rgb(140, 72, 204)
+}
+
 .stream-info-card {
   margin-top: .2rem;
   color: #fff;
@@ -94,7 +134,7 @@ p {
   width: 3rem;
 }
 
-.stream-info-profile-image {
+.stream-info-profile-image, .profile-image {
   display: block;
   border-radius: 50%;
 }
