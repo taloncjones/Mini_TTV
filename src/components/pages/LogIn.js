@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class LogIn extends Component {
-  onClick() {
-    axios.get('//127.0.0.1/login')
-      .then(res => {
-        console.log(res.data)
-      })
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: true,
+    }
   }
 
   displayPage() {
     let body
-    if (!this.props.id) {
+    if (this.props.profileInfo.length == 0) {
       return (
-        <div>
+        <div className="profile-card">
           <h3>Logging in will allow you to view your followed channels.</h3>
           <a href="//127.0.0.1/login">
             <button className="log-button">Log In to Twitch TV!</button>
@@ -22,12 +22,13 @@ class LogIn extends Component {
       )
     } else {
       return (
-        <div className="profile">
-          <h3>Hi {this.props.profile_info.display_name}</h3>
+        <div className="profile-card">
+          <h3>Hi</h3>
+          <div className="profile-name">{this.props.profileInfo.display_name}</div>
           <div className="profile-container">
-            <a href={"/" + this.props.profile_info.display_name}>
+            <a href={"/" + this.props.profileInfo.display_name}>
               <div className="profile-box">
-                <img className="profile-image" src={this.props.profile_info.profile_image_url} alt="" />
+                <img className="profile-image" src={this.props.profileInfo.profile_image_url} alt="" />
               </div>
             </a>
           </div>
