@@ -18,17 +18,15 @@ class App extends Component {
       games: [],
       follows: [],
       id: '',
-      profile_info: [],
+      profileInfo: [],
       isFetching: false,
+      loginCheck: false,
+      loggedIn: false,
     };
   }
 
   fetchData() {
     this.setState({ isFetching: true })
-    axios.get('//127.0.0.1/whoami', { withCredentials: true })
-      .then(res => {
-        res.data['data'].map((item) => this.setState({profile_info: item}))
-      })
     axios.get('//127.0.0.1/json', { withCredentials: true })
       .then(res => {
         this.setState({
@@ -41,7 +39,23 @@ class App extends Component {
     this.setState({ isFetching: false })
   }
 
+  fetchProfile() {
+    this.setState({ isFetching: true })
+    axios.get('//127.0.0.1/whoami', { withCredentials: true })
+    .then(res => {
+      res.data['data'].map((item) => this.setState({profileInfo: item}));
+    })
+    this.setState({loginCheck: true});
+    this.setState({ isFetching: false })
+  }
+
+  loggedIn() {
+    axios.get('//127.0.0.1/loggedin', { withCredentials: true })
+    .then(res => this.setState({loggedIn: res.data}))
+  }
+
   componentDidMount() {
+    this.fetchProfile();
     this.fetchData();
     this.timer = setInterval(() => {
       this.fetchData()
@@ -54,14 +68,18 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.id)
+    if(!this.state.loginCheck) {
+      this.loggedIn();
+    }
     return (
       <Router>
         <div className="App">
           <div className="container">
-            <Header id={this.state.id} />
+            <Header loggedIn={this.state.loggedIn} />
             <Switch>
               <Route path="/login">
-                <LogIn id={this.state.id} profile_info={this.state.profile_info} />
+                <LogIn id={this.state.id} profileInfo={this.state.profileInfo} />
               </Route>
               <Route path="/about" component={About} />
               <Route path="/:stream" component={Stream} />
