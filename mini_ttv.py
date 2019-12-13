@@ -64,7 +64,13 @@ def who_am_i():
     if 'state' in login_session:
         return ttv_get_my_info(token=login_session['access_token'], client_id=load_client_id())
     else:
-        return
+        return '{"data": []}'
+
+
+# Check logged in
+@app.route('/loggedin')
+def logged_in():
+    return 'true' if 'state' in login_session else 'false'
 
 
 # Top streams
