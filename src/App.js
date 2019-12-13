@@ -18,12 +18,17 @@ class App extends Component {
       games: [],
       follows: [],
       id: '',
+      profile_info: [],
       isFetching: false,
     };
   }
 
   fetchData() {
     this.setState({ isFetching: true })
+    axios.get('//127.0.0.1/whoami', { withCredentials: true })
+      .then(res => {
+        res.data['data'].map((item) => this.setState({profile_info: item}))
+      })
     axios.get('//127.0.0.1/json', { withCredentials: true })
       .then(res => {
         this.setState({
@@ -56,7 +61,7 @@ class App extends Component {
             <Header id={this.state.id} />
             <Switch>
               <Route path="/login">
-                <LogIn id={this.state.id} />
+                <LogIn id={this.state.id} profile_info={this.state.profile_info} />
               </Route>
               <Route path="/about" component={About} />
               <Route path="/:stream" component={Stream} />
