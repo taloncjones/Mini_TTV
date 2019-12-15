@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import StreamItem from './StreamItem'
 
-class TopStreams extends Component {
+class StreamList extends Component {
   render() {
     return (
       <div className="stream-list">
@@ -13,4 +13,4 @@ class TopStreams extends Component {
   }
 }
 
-export default TopStreams
+export default StreamList

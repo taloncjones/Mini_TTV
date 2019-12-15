@@ -36,10 +36,6 @@ class LogIn extends Component {
     }
   }
 
-  componentDidMount() {
-    return this.displayPage()
-  }
-
   render() {
     return (
       <div className="about-page">

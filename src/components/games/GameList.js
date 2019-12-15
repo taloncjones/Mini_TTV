@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GameItem from './GameItem'
 
-class TopGames extends Component {
+class GameList extends Component {
   render() {
     return (
       <div className="game-list">
@@ -13,4 +13,4 @@ class TopGames extends Component {
   }
 }
 
-export default TopGames
+export default GameList

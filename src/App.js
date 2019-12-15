@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
 import LogIn from './components/pages/LogIn';
 import Stream from './components/pages/Stream';
-import TopStreams from './components/streams/TopStreams';
-import TopGames from './components/games/TopGames';
+import StreamList from './components/streams/StreamList';
+import GameList from './components/games/GameList';
 
 import './App.css';
 
