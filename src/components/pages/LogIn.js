@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class LogIn extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoading: true,
-    }
-  }
-
   displayPage() {
     let body
     if (this.props.profileInfo.length == 0) {
