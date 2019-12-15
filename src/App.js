@@ -19,39 +19,62 @@ class App extends Component {
       follows: [],
       id: '',
       profileInfo: [],
-      isFetching: false,
+      pageName: '',
+      streamName: '',
+      streamsFetching: true,
+      gamesFetching: true,
+      folowsFetching: true,
       loginCheck: false,
       loggedIn: false,
     };
   }
 
-  fetchData() {
-    this.setState({ isFetching: true })
-    axios.get('//127.0.0.1/json', { withCredentials: true })
+  fetchStreams() {
+    this.setState({ streamsFetching: true })
+    axios.get('//127.0.0.1/streams', { withCredentials: true })
       .then(res => {
-        this.setState({
-          streams: res.data['streams']['data'],
-          games: res.data['games']['data'],
-          follows: res.data['follows'],
-          id: res.data['login']
-        })
+        this.setState({ streams: res.data['data'] })
       })
-    this.setState({ isFetching: false })
+    this.setState({ streamsFetching: false })
+  }
+
+  fetchGames() {
+    this.setState({ gamesFetching: true })
+    axios.get('//127.0.0.1/games', { withCredentials: true })
+      .then(res => {
+        this.setState({ games: res.data['data'] })
+      })
+    this.setState({ gamesFetching: false })
+  }
+
+  fetchFollows() {
+    this.setState({ folowsFetching: true })
+    axios.get('//127.0.0.1/follows', { withCredentials: true })
+      .then(res => {
+        this.setState({ follows: res.data['data'] })
+      })
+    this.setState({ folowsFetching: false })
+  }
+
+  fetchData() {
+    this.fetchStreams();
+    this.fetchGames();
+    this.fetchFollows();
   }
 
   fetchProfile() {
     this.setState({ isFetching: true })
     axios.get('//127.0.0.1/whoami', { withCredentials: true })
-    .then(res => {
-      res.data['data'].map((item) => this.setState({profileInfo: item}));
-    })
-    this.setState({loginCheck: true});
+      .then(res => {
+        res.data['data'].map((item) => this.setState({ profileInfo: item }));
+      })
+    this.setState({ loginCheck: true });
     this.setState({ isFetching: false })
   }
 
   loggedIn() {
     axios.get('//127.0.0.1/loggedin', { withCredentials: true })
-    .then(res => this.setState({loggedIn: res.data}))
+      .then(res => this.setState({ loggedIn: res.data }))
   }
 
   componentDidMount() {
@@ -68,8 +91,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.id)
-    if(!this.state.loginCheck) {
+    if (!this.state.loginCheck) {
       this.loggedIn();
     }
     return (
@@ -79,14 +101,14 @@ class App extends Component {
             <Header loggedIn={this.state.loggedIn} />
             <Switch>
               <Route path="/login">
-                <LogIn id={this.state.id} profileInfo={this.state.profileInfo} />
+                <LogIn profileInfo={this.state.profileInfo} />
               </Route>
               <Route path="/about" component={About} />
               <Route path="/:stream" component={Stream} />
               <Route path="/">
-                <TopStreams streams={this.state.streams} />
-                <TopGames games={this.state.games} />
-              </Route>
+                <StreamList streams={this.state.streams} />
+                <GameList games={this.state.games} />
+              </Route>/>
             </Switch>
           </div>
         </div>
