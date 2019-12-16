@@ -94,19 +94,12 @@ export default function MiniDrawer() {
       onMouseOver={handleDrawerOpen}
       onMouseOut={handleDrawerClose}
     >
-      <div className={classes.toolbar}>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
-      </div>
-      <Divider />
+      <div className={classes.toolbar} />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button key="Home"><ListItemText>Home</ListItemText></ListItem>
+        <ListItem button key="Games"><ListItemText>Top Games</ListItemText></ListItem>
+        <ListItem button key="Streams"><ListItemText>Top Streams</ListItemText></ListItem>
+        <ListItem button key="Follows"><ListItemText>My Follows</ListItemText></ListItem>
       </List>
       <Divider />
     </Drawer>

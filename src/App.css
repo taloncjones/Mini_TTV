@@ -11,12 +11,12 @@ body {
   color: #fff;
 }
 
-a, a.no-hover:hover {
+a {
   color: #fff;
   text-decoration: none;
 }
 
-a:hover, .stream-info-text-minor a:hover {
+a.purple:hover {
   color: #6441a5;
 }
 
