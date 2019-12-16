@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-import Header from './components/layout/Header';
 import LayoutJoiner from './components/layout/LayoutJoiner';
 import About from './components/pages/About';
 import LogIn from './components/pages/LogIn';
 import Stream from './components/pages/Stream';
 import StreamList from './components/streams/StreamList';
 import GameList from './components/games/GameList';
+import PropTypes from 'prop-types';
 
 import './App.css';
+
+const styles = ({
+  root: {
+    display: 'flex',
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -95,11 +102,12 @@ class App extends Component {
     if (!this.state.loginCheck) {
       this.loggedIn();
     }
+    const { classes } = this.props;
     return (
       <Router>
         <div className="App">
-          <div className="container">
-            <LayoutJoiner loggedIn={this.state.loggedIn} />
+          <div className={classes.root}>
+            <LayoutJoiner loggedIn={this.state.loggedIn} streams={this.state.streams} games={this.state.games} follows={this.state.follows} />
             <Switch>
               <Route path="/login">
                 <LogIn profileInfo={this.state.profileInfo} />
@@ -107,8 +115,7 @@ class App extends Component {
               <Route path="/about" component={About} />
               <Route path="/:stream" component={Stream} />
               <Route path="/">
-                <StreamList streams={this.state.streams} />
-                <GameList games={this.state.games} />
+                <h1>Welcome!</h1>
               </Route>/>
             </Switch>
           </div>
@@ -118,4 +125,8 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(App);
