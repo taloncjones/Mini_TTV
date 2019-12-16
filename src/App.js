@@ -122,15 +122,15 @@ class App extends Component {
             <LayoutJoiner loggedIn={this.state.loggedIn} streams={this.state.streams} games={this.state.games} follows={this.state.follows} />
             <main className={classes.content}>
               <div className={classes.toolbar} />
-            <Switch>
-              <Route path="/login">
-                <LogIn profileInfo={this.state.profileInfo} />
-              </Route>
-              <Route path="/about" component={About} />
-              <Route path="/:stream" component={Stream} />
-              <Route path="/">
-                <h1>Welcome!</h1>
-              </Route>/>
+              <Switch>
+                <Route path="/login">
+                  <LogIn profileInfo={this.state.profileInfo} />
+                </Route>
+                <Route path="/about" component={About} />
+                <Route path="/:stream" component={Stream} />
+                <Route path="/">
+                  <h1>Welcome!</h1>
+                </Route>/>
             </Switch>
             </main>
           </div>
