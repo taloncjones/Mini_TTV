@@ -130,6 +130,7 @@ class App extends Component {
                 <Route path="/:stream" component={Stream} />
                 <Route path="/">
                   <h1>Welcome!</h1>
+                  <StreamList streams={this.state.streams} />
                 </Route>/>
             </Switch>
             </main>

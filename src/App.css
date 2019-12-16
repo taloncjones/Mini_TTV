@@ -7,7 +7,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.2;
-  background-color: #333;
+  background-color: black;
   color: #fff;
 }
 
@@ -17,7 +17,7 @@ a, a.no-hover:hover {
 }
 
 a:hover, .stream-info-text-minor a:hover {
-  color: rgb(140, 72, 204)
+  color: #6441a5;
 }
 
 h1 {
@@ -49,31 +49,6 @@ p {
 .about-container {
   max-width: 50%;
   margin: 5px auto;
-}
-
-.header {
-  background: #222;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-}
-
-.my-button {
-  background-color: rgb(140, 72, 204);
-  border-radius:6px;
-  border: 0;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-size:16px;
-  font-weight:bold;
-  padding:6px 24px;
-  text-decoration:none;
-}
-
-.my-button:active {
-  position:relative;
-  top:1px;
 }
 
 .stream {
@@ -114,7 +89,7 @@ p {
 
 .profile-name {
   font-size: 2rem;
-  color: rgb(140, 72, 204)
+  color: #6441a5;
 }
 
 .stream-info-card {

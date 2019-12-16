@@ -36,7 +36,7 @@ function Header(loggedIn) {
             </Typography>
           <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/login">{loggedIn ? 'Log Out' : 'Log In'}</Link><br />
           <Link to="/monstercat">Monstercat</Link>
-          <Link to="/login">
+          <Link to="/login" className="no-hover">
             <Button color="inherit">{loggedIn ? 'Log Out' : 'Log In'}</Button>
           </Link>
         </Toolbar>
