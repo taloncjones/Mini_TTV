@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Header({ loggedIn }) {
+function Header(loggedIn) {
   const classes = useStyles();
 
   return (
