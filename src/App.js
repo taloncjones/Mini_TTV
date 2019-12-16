@@ -135,7 +135,7 @@ class App extends Component {
                     <h1>Welcome!</h1>
                     <StreamList streams={this.state.streams} />
                   </Route>/>
-            </Switch>
+                </Switch>
               </main>
             </div>
           </div>

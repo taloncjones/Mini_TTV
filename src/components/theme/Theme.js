@@ -9,7 +9,6 @@ const theme = createMuiTheme({
   overrides: {
     MuiDrawer: {
       paper: {
-        // color: 'white',
         background: '#363636',
         '& *': { color: 'rgba(255, 255, 255, 0.7)' },
       },
