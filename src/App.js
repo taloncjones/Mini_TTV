@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { withStyles, withTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import LayoutJoiner from './components/layout/LayoutJoiner';
 import About from './components/pages/About';
@@ -12,9 +12,21 @@ import PropTypes from 'prop-types';
 
 import './App.css';
 
-const styles = ({
+const styles = theme => ({
   root: {
     display: 'flex',
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    marginLeft: theme.spacing(9) + 1,
+    flexGrow: 1,
+    padding: theme.spacing(3),
   },
 });
 
@@ -108,6 +120,8 @@ class App extends Component {
         <div className="App">
           <div className={classes.root}>
             <LayoutJoiner loggedIn={this.state.loggedIn} streams={this.state.streams} games={this.state.games} follows={this.state.follows} />
+            <main className={classes.content}>
+              <div className={classes.toolbar} />
             <Switch>
               <Route path="/login">
                 <LogIn profileInfo={this.state.profileInfo} />
@@ -118,6 +132,7 @@ class App extends Component {
                 <h1>Welcome!</h1>
               </Route>/>
             </Switch>
+            </main>
           </div>
         </div>
       </Router>
