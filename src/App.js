@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/layout/Header';
+import LayoutJoiner from './components/layout/LayoutJoiner';
 import About from './components/pages/About';
 import LogIn from './components/pages/LogIn';
 import Stream from './components/pages/Stream';
@@ -98,7 +99,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container">
-            <Header loggedIn={this.state.loggedIn} />
+            <LayoutJoiner loggedIn={this.state.loggedIn} />
             <Switch>
               <Route path="/login">
                 <LogIn profileInfo={this.state.profileInfo} />
