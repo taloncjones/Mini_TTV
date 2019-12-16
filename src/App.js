@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './components/theme/Theme';
 import axios from 'axios';
 import LayoutJoiner from './components/layout/LayoutJoiner';
 import About from './components/pages/About';
@@ -117,25 +119,27 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <Router>
-        <div className="App">
-          <div className={classes.root}>
-            <LayoutJoiner loggedIn={this.state.loggedIn} streams={this.state.streams} games={this.state.games} follows={this.state.follows} />
-            <main className={classes.content}>
-              <div className={classes.toolbar} />
-              <Switch>
-                <Route path="/login">
-                  <LogIn profileInfo={this.state.profileInfo} />
-                </Route>
-                <Route path="/about" component={About} />
-                <Route path="/:stream" component={Stream} />
-                <Route path="/">
-                  <h1>Welcome!</h1>
-                  <StreamList streams={this.state.streams} />
-                </Route>/>
+        <MuiThemeProvider theme={theme}>
+          <div className="App">
+            <div className={classes.root}>
+              <LayoutJoiner loggedIn={this.state.loggedIn} streams={this.state.streams} games={this.state.games} follows={this.state.follows} />
+              <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <Switch>
+                  <Route path="/login">
+                    <LogIn profileInfo={this.state.profileInfo} />
+                  </Route>
+                  <Route path="/about" component={About} />
+                  <Route path="/:stream" component={Stream} />
+                  <Route path="/">
+                    <h1>Welcome!</h1>
+                    <StreamList streams={this.state.streams} />
+                  </Route>/>
             </Switch>
-            </main>
+              </main>
+            </div>
           </div>
-        </div>
+        </MuiThemeProvider>
       </Router>
     );
   }
