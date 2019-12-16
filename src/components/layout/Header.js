@@ -24,28 +24,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Header({ loggedIn, open, drawerOpen, drawerClose }) {
+function Header({ loggedIn }) {
   const classes = useStyles();
 
   return (
     <div className={classes.grow}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={open ? drawerClose : drawerOpen }
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.grow}>
             Mini TwitchTV
             </Typography>
           <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/login">{loggedIn ? 'Log Out' : 'Log In'}</Link><br />
           <Link to="/monstercat">Monstercat</Link>
-          <Button color="inherit">Login</Button>
+          <Link to="/login">
+            <Button color="inherit">{loggedIn ? 'Log Out' : 'Log In'}</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
