@@ -68,9 +68,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MiniDrawer({ open, drawerOpen, drawerClose }) {
+export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -87,11 +96,11 @@ export default function MiniDrawer({ open, drawerOpen, drawerClose }) {
             [classes.drawerClose]: !open,
           }),
         }}
-        onMouseOver={drawerOpen}
-        onMouseOut={drawerClose}
+        onMouseOver={handleDrawerOpen}
+        onMouseOut={handleDrawerClose}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={drawerClose}>
+          <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
