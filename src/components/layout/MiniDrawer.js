@@ -8,6 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
+import MovieIcon from '@material-ui/icons/Movie';
+import GamesIcon from '@material-ui/icons/Games';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const drawerWidth = 240;
 
@@ -23,14 +26,12 @@ const useStyles = makeStyles(theme => ({
   },
   drawerOpen: {
     width: drawerWidth,
-    background: '#363636',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    background: '#363636',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -48,6 +49,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
+  icon: {
+    height: '1em',
+    width: '1em',
+  }
 }));
 
 export default function MiniDrawer() {
@@ -86,12 +91,15 @@ export default function MiniDrawer() {
           <ListItemText>Home</ListItemText>
         </ListItem>
         <ListItem button key="Games">
+          <ListItemIcon><GamesIcon /></ListItemIcon>
           <ListItemText>Top Games</ListItemText>
         </ListItem>
         <ListItem button key="Streams">
+          <ListItemIcon><MovieIcon /></ListItemIcon>
           <ListItemText>Top Streams</ListItemText>
         </ListItem>
         <ListItem button key="Follows">
+          <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText>My Follows</ListItemText>
         </ListItem>
       </List>
