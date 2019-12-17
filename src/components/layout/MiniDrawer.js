@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -101,6 +102,7 @@ export default function MiniDrawer() {
         <ListItem
           button key="Home"
           onClick={event => handleListItemClick(event, 0)}
+          component={Link} to='/'
         >
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText>Home</ListItemText>
@@ -147,6 +149,7 @@ export default function MiniDrawer() {
         <ListItem
           button key="About"
           onClick={event => handleListItemClick(event, 4)}
+          component={Link} to='/about'
         >
           <ListItemIcon><InfoIcon /></ListItemIcon>
           <ListItemText>About</ListItemText>
