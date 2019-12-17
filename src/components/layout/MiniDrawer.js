@@ -11,6 +11,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import MovieIcon from '@material-ui/icons/Movie';
 import GamesIcon from '@material-ui/icons/Games';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import InfoIcon from '@material-ui/icons/Info';
+import { Switch } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -59,6 +61,7 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [letOpen, setChecked] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -71,6 +74,15 @@ export default function MiniDrawer() {
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
+
+  const handleDrawerToggle = () => {
+    setChecked(!letOpen);
+    if(!letOpen) {
+      handleDrawerOpen()
+    } else {
+      handleDrawerClose()
+    }
+  }
 
   return (
     <Drawer
@@ -85,7 +97,7 @@ export default function MiniDrawer() {
           [classes.drawerClose]: !open,
         }),
       }}
-      onMouseOver={handleDrawerOpen}
+      onMouseOver={letOpen ? handleDrawerOpen : handleDrawerClose}
       onMouseOut={handleDrawerClose}
     >
       <div className={classes.toolbar} />
@@ -121,8 +133,29 @@ export default function MiniDrawer() {
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText>My Follows</ListItemText>
         </ListItem>
+        <Divider />
+        <ListItem
+          button key="Drawer"
+        >
+          <ListItemIcon>
+            <Switch
+              edge="start"
+              size="small"
+              color="primary"
+              onChange={handleDrawerToggle}
+              checked={letOpen}
+            />
+          </ListItemIcon>
+          <ListItemText>Enable Sidebar</ListItemText>
+        </ListItem>
+        <ListItem
+          button key="About"
+          onClick={event => handleListItemClick(event, 4)}
+        >
+          <ListItemIcon><InfoIcon /></ListItemIcon>
+          <ListItemText>About</ListItemText>
+        </ListItem>
       </List>
-      <Divider />
     </Drawer>
   );
 }
