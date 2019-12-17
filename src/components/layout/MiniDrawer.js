@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -52,6 +53,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
+  footer: {
+    marginTop: 'auto',
+  },
 }));
 
 export default function MiniDrawer() {
@@ -74,7 +78,7 @@ export default function MiniDrawer() {
 
   const handleDrawerToggle = () => {
     setChecked(!letOpen);
-    if(!letOpen) {
+    if (!letOpen) {
       handleDrawerOpen()
     } else {
       handleDrawerClose()
@@ -131,6 +135,8 @@ export default function MiniDrawer() {
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText>My Follows</ListItemText>
         </ListItem>
+      </List>
+      <List className={classes.footer}>
         <Divider />
         <ListItem
           button key="Drawer"
