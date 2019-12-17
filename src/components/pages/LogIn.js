@@ -3,8 +3,7 @@ import Button from '@material-ui/core/Button';
 
 class LogIn extends Component {
   displayPage() {
-    let body
-    if (this.props.profileInfo.length == 0) {
+    if (this.props.profileInfo.length === 0) {
       return (
         <div className="profile-card">
           <h3>Logging in will allow you to view your followed channels.</h3>
