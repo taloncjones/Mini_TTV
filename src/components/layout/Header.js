@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { IconButton } from '@material-ui/core';
+import { Avatar } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -24,8 +24,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Header(loggedIn) {
+function Header({ loggedIn, profileInfo }) {
   const classes = useStyles();
+  let status;
+  if(loggedIn) {
+    status = <IconButton color="inherit"><Avatar alt={profileInfo.display_name} src={profileInfo.profile_image_url} /></IconButton>
+  } else {
+    status = <Button color="inherit">Log In</Button>
+  }
+  console.log(profileInfo)
 
   return (
     <div className={classes.grow}>
@@ -37,7 +44,7 @@ function Header(loggedIn) {
           <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/login">{loggedIn ? 'Log Out' : 'Log In'}</Link><br />
           <Link to="/monstercat">Monstercat</Link>
           <Link to="/login">
-            <Button color="inherit">{loggedIn ? 'Log Out' : 'Log In'}</Button>
+            {status}
           </Link>
         </Toolbar>
       </AppBar>
