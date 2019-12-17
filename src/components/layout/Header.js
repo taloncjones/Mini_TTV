@@ -40,7 +40,6 @@ function Header({ loggedIn, profileInfo }) {
           <Typography variant="h6" className={classes.grow}>
             Mini TwitchTV
             </Typography>
-          <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/login">{loggedIn ? 'Log Out' : 'Log In'}</Link><br />
           <Link to="/monstercat">Monstercat</Link>
           <Link to="/login">
             {status}
