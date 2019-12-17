@@ -13,11 +13,6 @@ const theme = createMuiTheme({
         '& *': { color: 'rgba(255, 255, 255, 0.7)' },
       },
     },
-    MuiListItemIcon: {
-      raisedPrimary: {
-        color: 'white',
-      },
-    }
   },
 })
 

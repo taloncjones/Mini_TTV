@@ -32,7 +32,6 @@ function Header({ loggedIn, profileInfo }) {
   } else {
     status = <Button color="inherit">Log In</Button>
   }
-  console.log(profileInfo)
 
   return (
     <div className={classes.grow}>

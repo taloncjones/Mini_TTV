@@ -51,10 +51,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
-  icon: {
-    height: '1em',
-    width: '1em',
-  }
 }));
 
 export default function MiniDrawer() {
