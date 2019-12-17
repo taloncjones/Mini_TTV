@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -57,8 +57,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function MiniDrawer() {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -66,6 +66,10 @@ export default function MiniDrawer() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
   };
 
   return (
@@ -86,19 +90,34 @@ export default function MiniDrawer() {
     >
       <div className={classes.toolbar} />
       <List>
-        <ListItem button key="Home">
+        <ListItem
+          button key="Home"
+          onClick={event => handleListItemClick(event, 0)}
+        >
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText>Home</ListItemText>
         </ListItem>
-        <ListItem button key="Games">
+        <ListItem
+          button key="Games"
+          selected={selectedIndex === 1}
+          onClick={event => handleListItemClick(event, 1)}
+        >
           <ListItemIcon><GamesIcon /></ListItemIcon>
           <ListItemText>Top Games</ListItemText>
         </ListItem>
-        <ListItem button key="Streams">
+        <ListItem
+          button key="Streams"
+          selected={selectedIndex === 2}
+          onClick={event => handleListItemClick(event, 2)}
+        >
           <ListItemIcon><MovieIcon /></ListItemIcon>
           <ListItemText>Top Streams</ListItemText>
         </ListItem>
-        <ListItem button key="Follows">
+        <ListItem
+          button key="Favorites"
+          selected={selectedIndex === 3}
+          onClick={event => handleListItemClick(event, 3)}
+        >
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText>My Follows</ListItemText>
         </ListItem>
