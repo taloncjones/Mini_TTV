@@ -131,7 +131,7 @@ class App extends Component {
                     <LogIn profileInfo={this.state.profileInfo} />
                   </Route>
                   <Route path="/about" component={About} />
-                  <Route path="/:stream" component={Stream} />
+                  <Route path="/:stream" render={(props) => <Stream {...props} />} />
                   <Route path="/">
                     <h1>Welcome!</h1>
                     <StreamList streams={this.state.streams} />
