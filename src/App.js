@@ -48,6 +48,7 @@ class App extends Component {
       folowsFetching: true,
       loginCheck: false,
       loggedIn: false,
+      history: [],
     };
   }
 
@@ -122,7 +123,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <div className={classes.root}>
-              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} streams={this.state.streams} games={this.state.games} follows={this.state.follows} />
+              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} />
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Switch>
