@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+var mini_ttv_api = require('../Url.json')['url'];
+
 export class GameItem extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,7 @@ export class GameItem extends Component {
   }
 
   componentDidMount() {
-    axios.get('//127.0.0.1/game_info/' + this.props.game.id)
+    axios.get('//' + mini_ttv_api + '/game_info/' + this.props.game.id)
       .then(res => {
         this.setState({ info: res.data['data'] })
         var i;

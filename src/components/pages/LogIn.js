@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 
+var mini_ttv_api = require('../Url.json')['url'];
+
 class LogIn extends Component {
   displayPage() {
+    let link;
     if (this.props.profileInfo.length === 0) {
+      link = '//' + mini_ttv_api + '/login';
       return (
         <div className="profile-card">
           <h3>Logging in will allow you to view your followed channels.</h3>
-          <Button href="//127.0.0.1/login" variant="contained" color="primary">Log In to Twitch TV!</Button>
+          <Button href={ link } variant="contained" color="primary">Log In to Twitch TV!</Button>
         </div>
       )
     } else {
+      link = '//' + mini_ttv_api + '/disconnect';
       return (
         <div className="profile-card">
           <h3>Hi</h3>
@@ -22,7 +27,7 @@ class LogIn extends Component {
               </div>
             </a>
           </div>
-          <Button href="//127.0.0.1/disconnect" variant="contained" color="primary">Log Out?</Button>
+          <Button href={ link } variant="contained" color="primary">Log Out?</Button>
         </div>
       )
     }

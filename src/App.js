@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
 
 import './App.css';
 
+const mini_ttv_api = require('./components/Url.json')['url'];
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -54,7 +56,7 @@ class App extends Component {
 
   fetchStreams() {
     this.setState({ streamsFetching: true })
-    axios.get('//127.0.0.1/streams', { withCredentials: true })
+    axios.get('//' + mini_ttv_api + '/streams', { withCredentials: true })
       .then(res => {
         this.setState({ streams: res.data['data'] })
       })
@@ -63,7 +65,7 @@ class App extends Component {
 
   fetchGames() {
     this.setState({ gamesFetching: true })
-    axios.get('//127.0.0.1/games', { withCredentials: true })
+    axios.get('//' + mini_ttv_api + '/games', { withCredentials: true })
       .then(res => {
         this.setState({ games: res.data['data'] })
       })
@@ -72,7 +74,7 @@ class App extends Component {
 
   fetchFollows() {
     this.setState({ folowsFetching: true })
-    axios.get('//127.0.0.1/follows', { withCredentials: true })
+    axios.get('//' + mini_ttv_api + '/follows', { withCredentials: true })
       .then(res => {
         this.setState({ follows: res.data['data'] })
       })
@@ -87,7 +89,7 @@ class App extends Component {
 
   fetchProfile() {
     this.setState({ isFetching: true })
-    axios.get('//127.0.0.1/whoami', { withCredentials: true })
+    axios.get('//' + mini_ttv_api + '/whoami', { withCredentials: true })
       .then(res => {
         res.data['data'].map((item) => this.setState({ profileInfo: item }));
       })
@@ -96,7 +98,7 @@ class App extends Component {
   }
 
   loggedIn() {
-    axios.get('//127.0.0.1/loggedin', { withCredentials: true })
+    axios.get('//' + mini_ttv_api + '/loggedin', { withCredentials: true })
       .then(res => this.setState({ loggedIn: res.data }))
   }
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import StreamInfo from './SteamInfo';
 import axios from 'axios';
 
+var mini_ttv_api = require('../Url.json')['url'];
+
 export class StreamItem extends Component {
   constructor(props) {
     super(props);
@@ -12,9 +14,9 @@ export class StreamItem extends Component {
   }
 
   componentDidMount() {
-    axios.get('//127.0.0.1/user/' + this.props.stream.user_id)
+    axios.get('//' + mini_ttv_api + '/user/' + this.props.stream.user_id)
       .then(res => this.setState({ info: res.data['data'][0] }))
-    axios.get('//127.0.0.1/game/' + this.props.stream.game_id)
+    axios.get('//' + mini_ttv_api + '/game/' + this.props.stream.game_id)
       .then(res => this.setState({ game: res.data['data'][0] }))
   }
 
