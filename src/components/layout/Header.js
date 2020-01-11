@@ -68,6 +68,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function goTo(event) {
+  if (event.key === "Enter") {
+    window.location = '/' + event.target.value;
+  }
+}
+
 function Header({ loggedIn, profileInfo, pageName }) {
   const classes = useStyles();
   let status;
@@ -96,6 +102,7 @@ function Header({ loggedIn, profileInfo, pageName }) {
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                onKeyPress={goTo}
               />
             </div>
           </Typography>
