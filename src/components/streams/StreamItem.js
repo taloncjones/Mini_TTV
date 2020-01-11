@@ -54,8 +54,10 @@ class StreamItem extends Component {
   componentDidMount() {
     axios.get('//' + mini_ttv_api + '/user/' + this.props.stream.user_id)
       .then(res => this.setState({ info: res.data['data'][0] }))
-    axios.get('//' + mini_ttv_api + '/game/' + this.props.stream.game_id)
-      .then(res => this.setState({ game: res.data['data'][0] }))
+    if (this.props.stream.game_id) {
+      axios.get('//' + mini_ttv_api + '/game/' + this.props.stream.game_id)
+        .then(res => this.setState({ game: res.data['data'][0] }))
+    }
   }
 
   getThumbnail(url) {
