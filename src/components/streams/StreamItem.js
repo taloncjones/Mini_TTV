@@ -86,7 +86,11 @@ class StreamItem extends Component {
               </div>
             </Link>
           </Grid>
-          <StreamInfo info={this.state.info} game={this.state.game} />
+          <StreamInfo
+            info={this.state.info}
+            game={this.state.game}
+            title={this.props.stream.title}
+          />
         </Grid>
       </Paper>
     )

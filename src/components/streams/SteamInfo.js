@@ -32,7 +32,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.primary,
     "&:hover": {
       color: theme.palette.primary.main,
-    }
+    },
+    fontSize: '.9rem',
   },
   textMinor: {
     color: theme.palette.text.secondary,
