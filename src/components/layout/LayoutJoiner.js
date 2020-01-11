@@ -6,7 +6,7 @@ export default function LayoutJoiner({ loggedIn, profileInfo, history, pageName 
   return (
     <div>
       <Header loggedIn={loggedIn} profileInfo={profileInfo} pageName={pageName} />
-      <MiniDrawer history={history} />
+      <MiniDrawer history={history} pageName={pageName}/>
     </div>
   )
 }
