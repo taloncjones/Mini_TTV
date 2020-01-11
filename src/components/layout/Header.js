@@ -90,22 +90,20 @@ function Header({ loggedIn, profileInfo, streamName }) {
           <Typography variant="h6" className={classes.grow}>
             Mini TwitchTV
           </Typography>
-          <Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder={streamName}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                onKeyPress={goTo}
-              />
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
-          </Typography>
+            <InputBase
+              placeholder={streamName}
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+              onKeyPress={goTo}
+            />
+          </div>
           <Typography>
             <Link to="/login" className={classes.noUnderline}>
               {status}
