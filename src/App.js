@@ -43,7 +43,6 @@ class App extends Component {
       follows: [],
       id: '',
       profileInfo: [],
-      pageName: '',
       streamName: '',
       streamsFetching: true,
       gamesFetching: true,
@@ -100,10 +99,6 @@ class App extends Component {
   loggedIn() {
     axios.get('//' + mini_ttv_api + '/loggedin', { withCredentials: true })
       .then(res => this.setState({ loggedIn: res.data }))
-  }
-
-  setPage = (page) => {
-    this.setState({ pageName: page.substr() });
   }
 
   setStream = (stream) => {

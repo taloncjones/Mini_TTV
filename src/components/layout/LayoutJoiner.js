@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import MiniDrawer from './MiniDrawer';
 
-export default function LayoutJoiner({ loggedIn, profileInfo, history, pageName, streamName }) {
+export default function LayoutJoiner({ loggedIn, profileInfo, history, streamName }) {
   return (
     <div>
       <Header loggedIn={loggedIn} profileInfo={profileInfo} streamName={streamName} />
