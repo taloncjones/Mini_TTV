@@ -9,7 +9,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import MovieIcon from '@material-ui/icons/Movie';
+import VideocamIcon from '@material-ui/icons/Videocam';
 import GamesIcon from '@material-ui/icons/Games';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InfoIcon from '@material-ui/icons/Info';
@@ -124,7 +124,7 @@ export default function MiniDrawer() {
           selected={selectedIndex === 2}
           onClick={event => handleListItemClick(event, 2)}
         >
-          <ListItemIcon><MovieIcon /></ListItemIcon>
+          <ListItemIcon><VideocamIcon /></ListItemIcon>
           <ListItemText>Top Streams</ListItemText>
         </ListItem>
         <ListItem
