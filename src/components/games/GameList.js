@@ -16,7 +16,7 @@ export default function GameList({ games }) {
     <div className={classes.grow}>
       <Grid container spacing={2}>
         {games.map((game) => (
-          <Grid item key={game.id} sm={3} xs={6}>
+          <Grid item key={game.id} sm={2} xs={3}>
             <GameItem key={game.id} game={game} />
           </Grid>
         ))}
