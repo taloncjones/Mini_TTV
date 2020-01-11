@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   overlay: {
     position: 'absolute',
-    top: theme.spacing(.5),
+    top: theme.spacing(1),
     padding: theme.spacing(0),
     paddingLeft: theme.spacing(.5),
     paddingRight: theme.spacing(.5),
@@ -35,6 +35,9 @@ const styles = theme => ({
   status: {
     left: theme.spacing(1),
     backgroundColor: 'red',
+  },
+  thumbnail: {
+    borderRadius: theme.spacing(.5),
   },
   viewers: {
     right: theme.spacing(1),
@@ -77,7 +80,7 @@ class StreamItem extends Component {
         <Grid container>
           <Grid item xs={12}>
             <Link href={"/" + this.state.info.display_name}>
-              <img src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
+              <img className={classes.thumbnail} src={this.getThumbnail(this.props.stream.thumbnail_url)} alt="" />
               <div className={`${classes.overlay} ${classes.status}`}>
                 {this.props.stream.type.charAt(0).toUpperCase() + this.props.stream.type.slice(1)}
               </div>
