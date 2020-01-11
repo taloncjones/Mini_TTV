@@ -28,7 +28,7 @@ const theme = createMuiTheme({
       root: {
         textDecoration: 'none!important',
       }
-    }
+    },
   },
 })
 

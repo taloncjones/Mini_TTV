@@ -14,10 +14,8 @@ const styles = theme => ({
   },
   overlay: {
     position: 'absolute',
-    top: theme.spacing(.5),
-    padding: theme.spacing(0),
-    paddingLeft: theme.spacing(.5),
-    paddingRight: theme.spacing(.5),
+    top: theme.spacing(1),
+    padding: theme.spacing(0, .5),
     borderRadius: theme.spacing(.5),
     color: theme.palette.text.primary,
   },

@@ -9,8 +9,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   info: {
-    marginTop: theme.spacing(.5),
-    marginBottom: theme.spacing(.5),
+    margin: theme.spacing(.5, 0),
     color: theme.palette.text.primary,
     textAlign: 'left',
   },
@@ -39,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   textMinor: {
     color: theme.palette.text.secondary,
     fontSize: '.7rem',
-  }
+  },
 }));
 
 export default function StreamInfo({ info, game, title }) {

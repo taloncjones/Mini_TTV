@@ -15,20 +15,14 @@ const styles = theme => ({
   paper: {
     textAlign: 'center',
     backgroundColor: theme.palette.secondary[900],
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(.5),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    padding: theme.spacing(1, 1, .5, 1),
     color: theme.palette.text.primary,
     position: 'relative',
   },
   overlay: {
     position: 'absolute',
     top: theme.spacing(1),
-    padding: theme.spacing(0),
-    paddingLeft: theme.spacing(.5),
-    paddingRight: theme.spacing(.5),
+    padding: theme.spacing(0, .5),
     borderRadius: theme.spacing(.5),
     color: theme.palette.text.primary,
   },
@@ -42,7 +36,7 @@ const styles = theme => ({
   viewers: {
     right: theme.spacing(1),
     backgroundColor: 'grey',
-  }
+  },
 });
 
 class StreamItem extends Component {
