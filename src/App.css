@@ -11,29 +11,8 @@ body {
   color: #fff;
 }
 
-h1 {
-  padding: .4rem;
-}
-
-iframe {
-  max-width: 100%;
-}
-
 img {
   max-width: 100%;
-}
-
-p {
-  margin-bottom: .5rem;
-}
-
-.about-page {
-  text-align: center;
-}
-
-.about-container {
-  max-width: 50%;
-  margin: 5px auto;
 }
 
 .stream {
