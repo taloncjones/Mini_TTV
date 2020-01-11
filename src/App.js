@@ -76,7 +76,7 @@ class App extends Component {
     this.setState({ folowsFetching: true })
     axios.get('//' + mini_ttv_api + '/follows', { withCredentials: true })
       .then(res => {
-        this.setState({ follows: res.data['data'] })
+        this.setState({ follows: res.data['page1'] })
       })
     this.setState({ folowsFetching: false })
   }
@@ -103,7 +103,11 @@ class App extends Component {
   }
 
   setPage = (page) => {
-    this.setState({ pageName: page.substr(1) });
+    this.setState({ pageName: page.substr() });
+  }
+
+  setStream = (stream) => {
+    this.setState({ streamName: stream.substr(1) })
   }
 
   componentDidMount() {
@@ -129,7 +133,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <div className={classes.root}>
-              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} pageName={this.state.pageName} />
+              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} pageName={this.state.pageName} streamName={this.state.streamName} />
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Switch>
@@ -137,10 +141,10 @@ class App extends Component {
                     <LogIn profileInfo={this.state.profileInfo} />
                   </Route>
                   <Route path="/about" component={About} />
-                  <Route path="/:stream" render={(props) => <Stream {...props} setPage={this.setPage}/>} />
+                  <Route path="/:stream" render={(props) => <Stream {...props} setStream={this.setStream}/>} />
                   <Route path="/">
                     <h1>Welcome!</h1>
-                    <StreamList streams={this.state.streams} />
+                    <StreamList streams={this.state.follows} />
                   </Route>/>
                 </Switch>
               </main>

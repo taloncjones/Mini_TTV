@@ -74,7 +74,7 @@ function goTo(event) {
   }
 }
 
-function Header({ loggedIn, profileInfo, pageName }) {
+function Header({ loggedIn, profileInfo, streamName }) {
   const classes = useStyles();
   let status;
   if (loggedIn) {
@@ -96,7 +96,7 @@ function Header({ loggedIn, profileInfo, pageName }) {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder={pageName}
+                placeholder={streamName}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

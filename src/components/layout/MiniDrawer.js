@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MiniDrawer({ pageName }) {
+export default function MiniDrawer({ streamName }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -106,7 +106,7 @@ export default function MiniDrawer({ pageName }) {
         <ListItem
           button key="Home"
           onClick={event => handleListItemClick(event, 0)}
-          component={Link} to={pageName}
+          component={Link} to={streamName}
         >
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText>Home</ListItemText>

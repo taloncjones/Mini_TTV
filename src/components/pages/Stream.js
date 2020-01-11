@@ -15,7 +15,7 @@ const styles = theme => ({
 
 class Stream extends Component {
   componentDidMount() {
-    this.props.setPage(this.props.location.pathname);
+    this.props.setStream(this.props.location.pathname);
     const script = document.createElement('script');
     script.setAttribute('src', 'https://embed.twitch.tv/embed/v1.js');
     script.addEventListener('load', () => {
