@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './components/theme/Theme';
@@ -143,7 +143,7 @@ class App extends Component {
                     <GameList games={this.state.games} />
                   </Route>
                   <Route path="/following">
-                    <StreamList streams={this.state.follows} />
+                    {this.state.loggedIn ? <StreamList streams={this.state.follows} /> : <Redirect to="/login" />}
                   </Route>
                   <Route path="/:stream" render={(props) => <Stream {...props} setStream={this.setStream}/>} />
                   <Route path="/">
