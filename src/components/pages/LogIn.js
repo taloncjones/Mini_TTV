@@ -11,7 +11,12 @@ const styles = theme => ({
   button: {
     marginTop: theme.spacing(1),
   },
+  page: {
+    textAlign: 'center',
+  },
   paper: {
+    maxWidth: '50%',
+    margin: '0 auto',
     textAlign: 'center',
     backgroundColor: theme.palette.secondary[900],
     padding: theme.spacing(1),
@@ -84,10 +89,8 @@ class LogIn extends Component {
     const { classes } = this.props;
 
     return (
-      <div className="about-page">
-        <div className="about-container">
-          {this.displayPage()}
-        </div>
+      <div className={classes.page}>
+        {this.displayPage()}
       </div>
     )
   }
