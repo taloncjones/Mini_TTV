@@ -12,6 +12,11 @@ const theme = createMuiTheme({
       secondary: '#ccc',
     }
   },
+  typography: {
+    fontFamily: 'Arial, Helvetica, sans-serif',
+    lineHeight: '1.2',
+    color: '#fff',
+  },
   overrides: {
     MuiDrawer: {
       paper: {
