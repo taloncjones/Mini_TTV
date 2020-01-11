@@ -11,15 +11,6 @@ body {
   color: #fff;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
-}
-
-a.purple:hover {
-  color: #6441a5;
-}
-
 h1 {
   padding: .4rem;
 }
@@ -62,7 +53,7 @@ p {
   flex-flow: column;
 }
 
-.stream-card, .game-card {
+.game-card {
   background-color: #333;
   margin-bottom: 1rem;
   padding: 0 .5rem;
@@ -76,79 +67,12 @@ p {
   max-width: 20%;
 }
 
-.profile-box {
-  width: 6rem;
-  flex: 0 0 auto;
-}
-
-.profile-container {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 1rem;
-}
-
-.profile-name {
-  font-size: 2rem;
-  color: #6441a5;
-}
-
-.stream-info-card {
-  margin-top: .2rem;
-  color: #fff;
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.stream-info-profile-container {
-  flex: 0 0 auto;
-  margin-right: .5rem;
-}
-
-.stream-info-profile-box {
-  overflow: hidden;
-  width: 3rem;
-}
-
-.stream-info-profile-image, .profile-image {
+.profile-image {
   display: block;
   border-radius: 50%;
 }
 
-.stream-info-text-container {
-  min-width: 0;
-  width: 100%;
-  flex: 1 1 auto;
-}
-
-.stream-info-text-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.stream-info-text-minor a {
-  color: #ccc;
-  font-size: .8rem;
-}
-
-.stream-list, .game-list {
+.game-list {
   display: flex;
   flex-wrap: wrap;
-}
-
-.stream-overlay {
-  position: absolute;
-  top: .5rem;
-  padding: 0 5px;
-  border-radius: .5rem;
-}
-
-.status {
-  left: 1rem;
-  background-color: red;
-}
-
-.viewers {
-  right: 1rem;
-  background-color: grey;
 }
