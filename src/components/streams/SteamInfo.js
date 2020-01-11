@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -56,9 +57,11 @@ export default function StreamInfo({ info, game, title }) {
       <Grid item container zeroMinWidth xs>
         <Grid item xs={12}>
           <Link href={"/" + info.display_name}>
-            <div className={classes.text}>
-              {title}
-            </div>
+            <Tooltip enterDelay={500} exitDelay={0} placement="top-start" title={title}>
+              <div className={classes.text}>
+                {title}
+              </div>
+            </Tooltip>
           </Link>
         </Grid>
         <Grid item xs={12}>
