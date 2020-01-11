@@ -115,6 +115,7 @@ export default function MiniDrawer({ streamName }) {
           button key="Games"
           selected={selectedIndex === 1}
           onClick={event => handleListItemClick(event, 1)}
+          component={Link} to="/games"
         >
           <ListItemIcon><GamesIcon /></ListItemIcon>
           <ListItemText>Top Games</ListItemText>
@@ -123,6 +124,7 @@ export default function MiniDrawer({ streamName }) {
           button key="Streams"
           selected={selectedIndex === 2}
           onClick={event => handleListItemClick(event, 2)}
+          component={Link} to="/streams"
         >
           <ListItemIcon><VideocamIcon /></ListItemIcon>
           <ListItemText>Top Streams</ListItemText>
@@ -131,6 +133,7 @@ export default function MiniDrawer({ streamName }) {
           button key="Favorites"
           selected={selectedIndex === 3}
           onClick={event => handleListItemClick(event, 3)}
+          component={Link} to="/following"
         >
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText>My Follows</ListItemText>

@@ -133,7 +133,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <div className={classes.root}>
-              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} pageName={this.state.pageName} streamName={this.state.streamName} />
+              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} streamName={this.state.streamName} />
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Switch>
@@ -141,10 +141,18 @@ class App extends Component {
                     <LogIn profileInfo={this.state.profileInfo} />
                   </Route>
                   <Route path="/about" component={About} />
+                  <Route path="/streams">
+                    <StreamList streams={this.state.streams} />
+                  </Route>
+                  <Route path="/games">
+                    <GameList games={this.state.games} />
+                  </Route>
+                  <Route path="/following">
+                    <StreamList streams={this.state.follows} />
+                  </Route>
                   <Route path="/:stream" render={(props) => <Stream {...props} setStream={this.setStream}/>} />
                   <Route path="/">
                     <h1>Welcome!</h1>
-                    <StreamList streams={this.state.follows} />
                   </Route>/>
                 </Switch>
               </main>
