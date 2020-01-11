@@ -8,7 +8,6 @@ import axios from 'axios';
 
 var mini_ttv_api = require('../Url.json')['url'];
 
-
 const styles = theme => ({
   grow: {
     flexGrow: 1,
