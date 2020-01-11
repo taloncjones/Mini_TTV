@@ -1,4 +1,17 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  streamContainer: {
+    textAlign: 'center',
+    display: 'flex',
+    flexFlow: 'column',
+  },
+  stream: {
+    margin: '.5rem auto',
+    flex: '1 1 auto',
+  },
+});
 
 class Stream extends Component {
   componentDidMount() {
@@ -12,9 +25,10 @@ class Stream extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div className="stream-container">
-        <div className="stream" id={this.props.targetID}></div>
+      <div className={classes.streamContainer}>
+        <div className={classes.stream} id={this.props.targetID}></div>
       </div>
     )
   }
@@ -27,4 +41,4 @@ Stream.defaultProps = {
   layout: 'video',
 }
 
-export default Stream
+export default withStyles(styles)(Stream)

@@ -41,7 +41,7 @@ export default function About() {
           variant="outlined"
           color="primary"
           className={classes.button}
-          >
+        >
           Click Here to View GitHub for Mini_TTV
         </Button>
       </Paper>

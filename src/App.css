@@ -15,17 +15,6 @@ img {
   max-width: 100%;
 }
 
-.stream {
-  margin: .5rem auto;
-  flex: 1 1 auto;
-}
-
-.stream-container {
-  text-align: center;
-  display: flex;
-  flex-flow: column;
-}
-
 .game-card {
   background-color: #333;
   margin-bottom: 1rem;
