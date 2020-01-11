@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function StreamInfo({ info, game }) {
+export default function StreamInfo({ info, game, title }) {
   const classes = useStyles();
 
   return (
@@ -56,7 +56,7 @@ export default function StreamInfo({ info, game }) {
         <Grid item xs={12}>
           <Link href={"/" + info.display_name}>
             <div className={classes.text}>
-              {info.description ? info.description : '<Blank>'}
+              {title}
             </div>
           </Link>
         </Grid>
@@ -70,7 +70,7 @@ export default function StreamInfo({ info, game }) {
         <Grid item xs={12}>
           <Link href={"//twitch.tv/directory/game/" + game.name}>
             <div className={`${classes.text} ${classes.textMinor}`}>
-              {game.name}
+              {game.name ? game.name : ''}
             </div>
           </Link>
         </Grid>
