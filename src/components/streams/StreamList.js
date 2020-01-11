@@ -17,7 +17,7 @@ export default function StreamList({ streams }) {
       <Grid container spacing={2}>
         {streams.map((stream) => (
           <Grid item sm={3} xs={6}>
-            <StreamItem item key={stream.id} stream={stream} />
+            <StreamItem key={stream.id} stream={stream} />
           </Grid>
         ))}
       </Grid>
