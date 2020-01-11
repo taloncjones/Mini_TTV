@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 var mini_ttv_api = require('../Url.json')['url'];
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     marginTop: theme.spacing(1),
   },
@@ -41,21 +41,27 @@ const styles = theme => ({
       color: theme.palette.primary.main,
     }
   },
-});
+}));
 
-class LogIn extends Component {
-  displayPage() {
+export default function LogIn({ profileInfo }) {
+  const classes = useStyles();
+
+  const displayPage = () => {
     let link;
-    const { classes } = this.props;
 
-    if (this.props.profileInfo.length === 0) {
+    if (profileInfo.length === 0) {
       link = '//' + mini_ttv_api + '/login';
       return (
         <Paper className={classes.paper}>
           <Typography variant="body1">
             Logging in will allow you to view your followed channels.
           </Typography>
-          <Button href={link} variant="contained" color="primary" className={classes.button}>
+          <Button
+            href={link}
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
             Log In to Twitch TV!
           </Button>
         </Paper>
@@ -67,17 +73,25 @@ class LogIn extends Component {
           <Typography variant="h6">
             Welcome
           </Typography>
-          <Link variant="body1" href={"/" + this.props.profileInfo.display_name} className={classes.user}>
-            {this.props.profileInfo.display_name}
+          <Link
+            variant="body1"
+            href={"/" + profileInfo.display_name} className={classes.user}
+          >
+            {profileInfo.display_name}
           </Link>
           <div className={classes.profileContainer}>
             <div className={classes.profileBox}>
-              <Link href={"/" + this.props.profileInfo.display_name}>
-                <img className={classes.profileImage} src={this.props.profileInfo.profile_image_url} alt="" />
+              <Link href={"/" + profileInfo.display_name}>
+                <img className={classes.profileImage} src={profileInfo.profile_image_url} alt="" />
               </Link>
             </div>
           </div>
-          <Button href={link} variant="contained" color="primary" className={classes.button}>
+          <Button
+            href={link}
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
             Log Out?
           </Button>
         </Paper>
@@ -85,16 +99,9 @@ class LogIn extends Component {
     }
   }
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.page}>
-        {this.displayPage()}
-      </div>
-    )
-  }
+  return (
+    <div className={classes.page}>
+      {displayPage()}
+    </div>
+  )
 }
-
-export default withStyles(styles)(LogIn)
-
