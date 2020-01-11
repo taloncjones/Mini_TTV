@@ -28,9 +28,9 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
   },
   content: {
-    marginLeft: theme.spacing(7) + 1,
-    flexGrow: 1,
+    paddingLeft: theme.spacing(10) + 1,
     padding: theme.spacing(3),
+    width: '100%',
   },
 });
 
@@ -94,12 +94,16 @@ class App extends Component {
         res.data['data'].map((item) => this.setState({ profileInfo: item }));
       })
     this.setState({ loginCheck: true });
-    this.setState({ isFetching: false })
+    this.setState({ isFetching: false });
   }
 
   loggedIn() {
     axios.get('//' + mini_ttv_api + '/loggedin', { withCredentials: true })
       .then(res => this.setState({ loggedIn: res.data }))
+  }
+
+  setPage = (page) => {
+    this.setState({ pageName: page.substr(1) });
   }
 
   componentDidMount() {
@@ -125,7 +129,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <div className={classes.root}>
-              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} />
+              <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} pageName={this.state.pageName} />
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Switch>
@@ -133,7 +137,7 @@ class App extends Component {
                     <LogIn profileInfo={this.state.profileInfo} />
                   </Route>
                   <Route path="/about" component={About} />
-                  <Route path="/:stream" render={(props) => <Stream {...props} />} />
+                  <Route path="/:stream" render={(props) => <Stream {...props} setPage={this.setPage}/>} />
                   <Route path="/">
                     <h1>Welcome!</h1>
                     <StreamList streams={this.state.streams} />
