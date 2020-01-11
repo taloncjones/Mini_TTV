@@ -14,22 +14,3 @@ body {
 img {
   max-width: 100%;
 }
-
-.game-card {
-  background-color: #333;
-  margin-bottom: 1rem;
-  padding: 0 .5rem;
-  color: #fff;
-  position: relative;
-  max-width: 25%;
-  flex: 0 1 auto;
-}
-
-.game-card {
-  max-width: 20%;
-}
-
-.game-list {
-  display: flex;
-  flex-wrap: wrap;
-}
