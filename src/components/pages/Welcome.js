@@ -1,12 +1,10 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    marginTop: theme.spacing(1),
-  },
   drawer: {
     top: 0,
     left: 0,
@@ -30,18 +28,8 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.secondary[900],
-    padding: theme.spacing(1),
+    padding: theme.spacing(5, 1),
     color: theme.palette.text.primary,
-  },
-  welcome: {
-    width: '50%',
-    height: '25%',
-    margin: '0 auto',
-    textAlign: 'center',
-    top: '50%',
-    left: '50%',
-    position: 'absolute',
-    transform: 'translate(-50%, -50%)',
   },
 }));
 
@@ -50,13 +38,15 @@ export default function Welcome() {
 
   return (
     <div className={classes.page}>
-      <Paper className={`${classes.paper} ${classes.welcome}`}>
-        <Typography variant="h4" className={classes.page}>
-          <span className={classes.welcome}>
-            Welcome!
-          </span>
-        </Typography>
-      </Paper>
+      <Grid container justify="center" alignItems="center" className={classes.page}>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            <Typography variant="h4">
+              Welcome to Mini TwitchTV!
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
       <Paper className={classes.drawer}>
         Test
       </Paper>
