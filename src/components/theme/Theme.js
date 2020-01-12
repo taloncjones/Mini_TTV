@@ -3,14 +3,12 @@ import { deepPurple, grey } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: deepPurple[500]
-    },
+    primary: deepPurple,
     secondary: grey,
     text: {
       primary: '#fff',
       secondary: '#ccc',
-    }
+    },
   },
   typography: {
     fontFamily: 'Arial, Helvetica, sans-serif',
