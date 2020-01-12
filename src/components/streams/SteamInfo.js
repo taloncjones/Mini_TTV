@@ -56,7 +56,7 @@ export default function StreamInfo({ info, game, title }) {
       <Grid item container zeroMinWidth xs>
         <Grid item xs={12}>
           <Link href={"/" + info.display_name}>
-            <Tooltip enterDelay={500} exitDelay={0} placement="top-start" title={title}>
+            <Tooltip enterDelay={500} leaveDelay={0} placement="top-start" title={title}>
               <div className={classes.text}>
                 {title}
               </div>
