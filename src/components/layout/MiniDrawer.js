@@ -64,6 +64,11 @@ export default function MiniDrawer({ streamName }) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [letOpen, setChecked] = React.useState(true);
 
+  React.useEffect(() => {
+    let checked = JSON.parse(localStorage.getItem('letOpen'))
+    setChecked(checked)
+  }, []);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -77,6 +82,7 @@ export default function MiniDrawer({ streamName }) {
   };
 
   const handleDrawerToggle = () => {
+    localStorage.setItem('letOpen', !letOpen)
     setChecked(!letOpen);
     if (!letOpen) {
       handleDrawerOpen()
