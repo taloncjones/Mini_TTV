@@ -10,6 +10,7 @@ import LogIn from './components/pages/LogIn';
 import Stream from './components/pages/Stream';
 import StreamList from './components/streams/StreamList';
 import GameList from './components/games/GameList';
+import Welcome from './components/pages/Welcome';
 import PropTypes from 'prop-types';
 import { grey } from '@material-ui/core/colors';
 
@@ -159,7 +160,7 @@ class App extends Component {
                   </Route>
                   <Route path="/:stream" render={(props) => <Stream {...props} setStream={this.setStream}/>} />
                   <Route path="/">
-                    <h1>Welcome!</h1>
+                    <Welcome />
                   </Route>/>
                 </Switch>
               </main>
