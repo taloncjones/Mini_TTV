@@ -11,17 +11,19 @@ import Stream from './components/pages/Stream';
 import StreamList from './components/streams/StreamList';
 import GameList from './components/games/GameList';
 import PropTypes from 'prop-types';
+import { grey } from '@material-ui/core/colors';
 
 import './App.css';
 
 const mini_ttv_api = require('./components/Url.json')['url'];
 
 const styles = theme => ({
+  app: {
+  },
   root: {
     display: 'flex',
   },
   toolbar: {
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
@@ -31,6 +33,17 @@ const styles = theme => ({
     paddingLeft: theme.spacing(10) + 1,
     padding: theme.spacing(3),
     width: '100%',
+    top: theme.spacing(8),
+    bottom: '0',
+    position: 'absolute',
+    overflowY: 'scroll',
+    '&::-webkit-scrollbar': {
+      width: theme.spacing(1),
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: grey[900],
+      borderRadius: theme.spacing(1),
+    },
   },
 });
 
@@ -126,11 +139,10 @@ class App extends Component {
     return (
       <Router>
         <MuiThemeProvider theme={theme}>
-          <div className="App">
+          <div className={classes.app}>
             <div className={classes.root}>
               <LayoutJoiner loggedIn={this.state.loggedIn} profileInfo={this.state.profileInfo} history={this.state.history} streamName={this.state.streamName} />
               <main className={classes.content}>
-                <div className={classes.toolbar} />
                 <Switch>
                   <Route path="/login">
                     <LogIn profileInfo={this.state.profileInfo} />
