@@ -31,8 +31,7 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
   },
   content: {
-    paddingLeft: theme.spacing(10) + 1,
-    padding: theme.spacing(3),
+    paddingLeft: theme.spacing(7) + 1,
     width: '100%',
     top: theme.spacing(8),
     bottom: '0',

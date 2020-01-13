@@ -5,8 +5,8 @@ import StreamItem from './StreamItem'
 
 const useStyles = makeStyles(theme => ({
   grow: {
-    flexGrow: 1,
-  },
+    padding: theme.spacing(3),
+  }
 }));
 
 export default function StreamList({ streams }) {

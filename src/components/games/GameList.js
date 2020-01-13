@@ -5,7 +5,7 @@ import GameItem from './GameItem'
 
 const useStyles = makeStyles(theme => ({
   grow: {
-    flexGrow: 1,
+    padding: theme.spacing(3),
   }
 }))
 
