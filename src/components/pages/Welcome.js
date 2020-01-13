@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -32,6 +34,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary[900],
     padding: theme.spacing(5, 1),
     color: theme.palette.text.primary,
+  },
+  tutorial: {
+    backgroundColor: theme.palette.secondary[900],
+    padding: theme.spacing(3, 1),
+    color: theme.palette.text.primary,
+    maxWidth: '25%',
   },
 }));
 
@@ -70,18 +78,52 @@ export default function Welcome() {
         </Grid>
       </Grid>
       <Box display={tutorial === 1 ? "block" : "none"}>
-        <Paper className={classes.drawer}>
-          Test
+        <Paper className={`${classes.drawer} ${classes.tutorial}`}>
+          <Typography component="div">
+            <Grid container alignItems="center">
+              <Grid item xs={1}>
+                <ChevronLeftIcon />
+              </Grid>
+              <Grid item xs={11}>
+                This bar to the left holds the navigation stuff. Hover over it and see what's there!
+              </Grid>
+            </Grid>
+          </Typography>
         </Paper>
       </Box>
       <Box display={tutorial === 2 ? "block" : "none"}>
-        <Paper className={classes.login}>
-          Test
+        <Paper className={`${classes.toggle} ${classes.tutorial}`}>
+          <Typography component="div">
+            <Grid container alignItems="center">
+              <Grid item xs={1}>
+                <ChevronLeftIcon />
+              </Grid>
+              <Grid item xs={11}>
+                This button toggles if the bar will expand or not. Turn it off if you know your way around.
+              </Grid>
+            </Grid>
+          </Typography>
         </Paper>
       </Box>
       <Box display={tutorial === 3 ? "block" : "none"}>
-        <Paper className={classes.toggle}>
-          Test
+        <Paper className={`${classes.login} ${classes.tutorial}`}>
+          <Typography component="div">
+            <Grid container direction="row-reverse" alignItems="flex-start">
+              <Grid item md={1} container>
+                <Grid item xs={12}>
+                  <KeyboardArrowUpIcon />
+                </Grid>
+              </Grid>
+              <Grid item md={11} container spacing={2}>
+                <Grid item>
+                  If you know a TwitchTV channel, you can go to it directly with this search bar!
+                </Grid>
+                <Grid item>
+                  You can also log in to see your followed channels!
+                </Grid>
+              </Grid>
+            </Grid>
+          </Typography>
         </Paper>
       </Box>
     </div>
