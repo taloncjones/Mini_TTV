@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  streamContainer: {
-    textAlign: 'center',
-    display: 'flex',
-    flexFlow: 'column',
-  },
-  stream: {
-    margin: '.5rem auto',
-    flex: '1 1 auto',
+  grow: {
+    height: '100%',
   },
 });
 
@@ -27,17 +22,17 @@ class Stream extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.streamContainer}>
-        <div className={classes.stream} id={this.props.targetID}></div>
-      </div>
+      <Grid container className={classes.grow} alignItems="stretch">
+        <Grid item xs className={classes.stream} id={this.props.targetID} />
+      </Grid>
     )
   }
 }
 
 Stream.defaultProps = {
   targetID: 'twitch-embed',
-  width: '940',
-  height: '480',
+  width: '100%',
+  height: '100%',
   layout: 'video',
 }
 

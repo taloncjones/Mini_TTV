@@ -36,7 +36,7 @@ const styles = theme => ({
     top: theme.spacing(8),
     bottom: '0',
     position: 'absolute',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     '&::-webkit-scrollbar': {
       width: theme.spacing(1),
     },
