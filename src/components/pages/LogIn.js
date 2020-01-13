@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   page: {
     textAlign: 'center',
+    padding: theme.spacing(3),
   },
   paper: {
     maxWidth: '50%',
