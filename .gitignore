@@ -10,5 +10,5 @@ venv/
 # Ignore __pycache__
 __pycache__
 
-# Ignore node_modules/.cache
-node_modules/.cache/
+# Ignore node_modules/
+node_modules/
