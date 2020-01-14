@@ -61,7 +61,7 @@ export class GameItem extends Component {
     const { classes } = this.props;
     return (
       <Grid item className={classes.gameCard} xs={12}>
-        <Link onClick={event => this.props.setGameInfo(this.state.info)}>
+        <Link onClick={event => this.props.showGameInfo(this.state.info)}>
           <img src={this.getThumbnail(this.props.game.box_art_url)} alt="" />
           <div className={`${classes.overlay} ${classes.viewers}`}>
             {this.state.total}
