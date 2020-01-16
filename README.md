@@ -1,14 +1,54 @@
 # Mini_TTV
 Originally intended to just notify users of Twitch.tv events (such as a stream 
-going live), the project has expanded to be a mini TTV player. Current 
-implementation only includes the back-end functionality.
-#### To-do:
-- Implement REDIS to securely store user OAuth Tokens.
-    - Current implementation uses Flask Session, which is not secure for public 
-    use.
-- Implement React front-end to interpret JSON responses.
-- Implement network related error handling for non-200 responses.
+going live), the project has expanded to be a mini TTV player. Current implementation includes a Python Flask API back-end, with a React front-end. However, due to Twitch API changes the current implementation no longer functions as desired. In the future I hope to modify the back end to use webhook subscriptions.
 
+### To-do:
+- ~~Implement React front-end to interpret JSON responses.~~
+- Implement network related error handling for non-200 responses.
+- Change backend API calls to use subscription webhooks.
+- Change frontend API calls to use backend subscription information.
+
+
+# Files:
+```
+.
+├── src                             # React src files
+│   ├── components
+│   │   ├── games
+│   │   │   ├── GameItem.js         # Renders game card with game poster, viewer count
+│   │   │   └── GameList.js         # Renders list of GameItems based on prop list provided
+│   │   ├── layout
+│   │   │   ├── Header.js           # Renders site header with search bar and log in button
+│   │   │   ├── LayoutJoiner.js     # Renders Header and MiniDrawer into one component
+│   │   │   └── MiniDrawer.js       # Renders left-side drawer with links to streams, games, follows, and about page
+│   │   ├── pages
+│   │   │   ├── About.js            # Renders a brief overview of the project
+│   │   │   ├── LogIn.js            # Renders a login page to allow oauth login
+│   │   │   ├── Stream.js           # Renders a specified stream from Twitch.tv
+│   │   │   └── Welcome.js          # Renders the main page. Introduces user to site and provides a basic tour.
+│   │   ├── streams
+│   │   │   ├── StreamInfo.js       # Renders stream information (stream title, streamer username, streamer profile picture, and game being played)
+│   │   │   ├── StreamItem.js       # Renders stream card with stream screenshot, stream status, viewer count, and StreamInfo
+│   │   │   └── StreamList.js       # Renders list of StreamItems based on prop list
+│   │   ├── theme
+│   │   │   └── Theme.js            # Modifies MaterialUI base css and provides theme coloring
+│   │   └── Url.json                # JSON file containing backend API IP for easy updates
+│   ├── App.css                     # Provides some basic css for the site. Originally contained more, but CSS was removed and brought into React files.
+│   ├── App.js                      # Main React front-end application
+│   └── ...                         # App.test.js, index.js, etc are mostly default from create-react-app
+├── mini_tv.py                      # Main Python back-end file. Creates Flask API and handles Twitch.tv API calls
+├── README.md
+├── ttv_api_calls.py                # Contains the functions that perform Twitch API calls and return data
+├── ttv_client_secrets.json         # Contains Twitch app Client ID/Secret
+├── ttv_credentials.py              # Responsible for reading ttv_client_secrets and handling the user login process
+├── ttv_json_handler.py             # Combines main JSON info (top streams/games, follows) into one JSON API call
+├── ttv_network_handler.py          # Responsible for generating headers and making network requests/getting JSON data
+├── ttv_notifications.log           # Log file created when running mini_tv.py
+└── ...
+```
+
+
+# Python File Overview:
 ### [mini_ttv.py](mini_ttv.py)
 Main application file. This file configures and starts a Flask session that 
 handles `/`, `/login`, `/auth`, and `/disconnect` routes for the project.
