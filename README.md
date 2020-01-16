@@ -47,6 +47,15 @@ going live), the project has expanded to be a mini TTV player. Current implement
 └── ...
 ```
 
+<img src="/screenshots/welcome/welcome1.png" alt="welcome1" width="100" />
+<img src="/screenshots/welcome/welcome2.png" alt="welcome2" width="100" />
+<img src="/screenshots/welcome/welcome3.png" alt="welcome3" width="100" />
+<img src="/screenshots/welcome/welcome4.png" alt="welcome4" width="100" />
+<br />
+<img src="/screenshots/pages/login.png" alt="login" width="100" />
+<img src="/screenshots/pages/sidebar.png" alt="sidebar" width="100" />
+<img src="/screenshots/pages/topgames.png" alt="topgames" width="100" />
+<img src="/screenshots/pages/topstreams.png" alt="topstreams" width="100" />
 
 # Python File Overview:
 ### [mini_ttv.py](mini_ttv.py)
