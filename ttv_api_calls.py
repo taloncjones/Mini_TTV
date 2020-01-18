@@ -9,10 +9,10 @@ with open('./src/components/Url.json') as url_json:
     
 
 OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
-            "&redirect_uri=" + redirect_uri + "/auth" \
+            "&redirect_uri=http://" + redirect_uri + "/auth" \
             "&scope=user_read"
 TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
-            "&redirect_uri=" + redirect_uri + "/auth"
+            "&redirect_uri=http://" + redirect_uri + "/auth"
 GAMES_URL = "https://api.twitch.tv/helix/games/top?"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
