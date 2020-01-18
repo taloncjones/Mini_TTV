@@ -1,6 +1,29 @@
 # Mini_TTV
 Originally intended to just notify users of Twitch.tv events (such as a stream 
-going live), the project has expanded to be a mini TTV player. Current implementation includes a Python Flask API back-end, with a React front-end. However, due to Twitch API changes the current implementation no longer functions as desired. In the future I hope to modify the back end to use webhook subscriptions.
+going live), the project has expanded to be a mini TTV player. Current implementation includes a Python Flask API back-end, with a React front-end.
+
+__Note:__ Due to recent Twitch API changes the current implementation no longer functions as desired. Twitch is now limiting the number of API calls per minute, and navigating through game directories will very quickly exceed that limit. In the future I hope to modify the project to use webhook subscriptions, but for now I'm halting work on the project until after the Twitch revisions.
+
+# Setup
+Current implementation should be fairly plug and play. Current settings:
+- React Port: 80
+- Python API Port: 3000
+- ./src/components/Url.json URL: 127.0.0.1:3000
+
+## __Required:__ Update Client ID and Secret:
+- Update [ttv_client_secrets.json](ttv_client_secrets.json) with the Client ID and Secret obtained from your Twitch application. If you haven't already done so, you can create one at https://dev.twitch.tv/console.
+
+## Changing the back-end URL and Port:
+- In [mini_ttv.py](mini_ttv.py), modify the following line to your desired port #:
+  ```    app.run(host='0.0.0.0', port=3000)```
+- In [url.json](src/components/Url.json), modify the url to your desired IP/URL. __Note:__ Do not include 'http://' or 'https://', the current implementation defaults to using 'http://' URLs.
+
+## Changing the front-end Port:
+- In [package.json](package.json), modify the following line with your desired port #:
+  ```
+  "scripts": {
+    "start": "PORT=80 react-scripts start",
+  ```
 
 ### To-do:
 - ~~Implement React front-end to interpret JSON responses.~~
