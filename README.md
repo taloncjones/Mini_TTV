@@ -77,7 +77,8 @@ Current implementation should be fairly plug and play. Current settings:
 <img src="/screenshots/welcome/welcome4.png" alt="welcome4" width="33%" />
 </div>
 <br />
-<img src="/screenshots/pages/login.png" alt="login" width="500" />
+<img src="/screenshots/pages/login.png" alt="login" width="50%" />
+<img src="/screenshots/pages/loggedin.png" alt="loggedin" width="50%">
 <div>
 <img src="/screenshots/pages/topgames.png" alt="topgames" width="50%" />
 <img src="/screenshots/pages/topstreams.png" alt="topstreams" width="50%" />
