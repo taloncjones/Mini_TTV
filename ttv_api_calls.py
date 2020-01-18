@@ -1,12 +1,18 @@
 import logging
+import json
 
 from ttv_network_handler import url_redirect, create_client_header, create_auth_header, url_get_json, url_post_json, create_bearer_header
 
+with open('./src/components/Url.json') as url_json:
+    data = json.load(url_json)
+    redirect_uri = data['url']
+    
+
 OAUTH_URL = "https://id.twitch.tv/oauth2/authorize?response_type=code" \
-            "&redirect_uri=http://127.0.0.1/auth" \
+            "&redirect_uri=" + redirect_uri + "/auth" \
             "&scope=user_read"
 TOKEN_URL = "https://id.twitch.tv/oauth2/token?grant_type=authorization_code" \
-            "&redirect_uri=http://127.0.0.1/auth"
+            "&redirect_uri=" + redirect_uri + "/auth"
 GAMES_URL = "https://api.twitch.tv/helix/games/top?"
 STREAMS_URL = "https://api.twitch.tv/helix/streams?"
 FOLLOWS_URL = "https://api.twitch.tv/helix/users/follows?from_id="
