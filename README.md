@@ -25,7 +25,36 @@ Current implementation should be fairly plug and play. Current settings:
     "start": "PORT=80 react-scripts start",
   ```
 
-### To-do:
+## Python dependencies:
+- flask
+- flask_cors
+
+## React dependencies:
+- "@material-ui/core": "^4.8.3",
+- "@material-ui/icons": "^4.5.1",
+- "axios": "^0.19.1",
+- "react-router-dom": "^5.1.2",
+
+## Run the project:
+After updating the above files, open two terminals.
+#### Terminal 1:
+1. Confirm python3 and pip are installed. You may also wish to use a virtual environment.
+2. [Install flask and flask_cors](https://flask.palletsprojects.com/en/1.1.x/installation/) with the following:
+    ```
+    pip install flask
+    pip install flask_cors
+    ```
+3. Run the Python back-end with `python3 mini_ttv.py`.
+  
+    __Note:__ By default, the flask project is running in developer and debug mode. You may wish to change these.
+#### Terminal 2:
+1. Confirm Node.js is installed. If you haven't already, you can download it [here](https://nodejs.org/en/).
+2. Update npm and install dependencies with: `npm install`
+3. Run the React front-end with `sudo npm start src/App.js`
+
+    __Note:__ Sudo is required to run on port 80 (default). If you don't have sudo access you may need to run the project on a different port.
+
+# To-do:
 - ~~Implement React front-end to interpret JSON responses.~~
 - Implement network related error handling for non-200 responses.
 - Change backend API calls to use subscription webhooks.
