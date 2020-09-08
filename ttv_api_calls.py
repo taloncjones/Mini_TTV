@@ -22,23 +22,27 @@ MY_URL = "https://api.twitch.tv/helix/users"
 GAME_URL = "https://api.twitch.tv/helix/games?id="
 
 
+# Validates token. Return valid/invalid. If valid return user ID.
 def ttv_validate_token(token):
     validation_data = url_get_json(VALIDATE_URL, create_auth_header(token))
     return validation_data['login'], validation_data['user_id']
 
 
+# Send OAuth info to Twitch and be redirected to /auth
 def ttv_get_auth_code(state, client_id):
     url = "%s&client_id=%s&state=%s" % (OAUTH_URL, client_id, state)
     logging.debug("AC Redirect: " + url)
     return url_redirect(url)
 
 
+# Send client_secret and code (from OAuth) to get Twitch token for server
 def ttv_get_auth_token(client_id, client_secret, code):
     url = "%s&client_id=%s&client_secret=%s&code=%s" % (TOKEN_URL, client_id, client_secret, code)
     logging.debug("URL: %s" % url)
     return url_post_json(url)
 
 
+# Get personal user info (e.g. follows)
 def ttv_get_my_info(token, client_id):
     url = f"{MY_URL}"
     header = create_client_header(client_id)

@@ -162,7 +162,7 @@ class App extends Component {
                   <Route path="/:stream" render={(props) => <Stream {...props} setStream={this.setStream}/>} />
                   <Route path="/">
                     <Welcome />
-                  </Route>/>
+                  </Route>
                 </Switch>
               </main>
             </div>

@@ -21,6 +21,7 @@ def load_client_secret():
     return app_secret
 
 
+# Generate user state and authorize with Twitch
 def get_user_auth():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(30))
     login_session['state'] = state
@@ -29,14 +30,15 @@ def get_user_auth():
     return ttv_get_auth_code(state, load_client_id())
 
 
+# Get token and token info from URL supplied by Twitch, and store in cookie
 def get_auth_token():
     logging.debug("Received Auth")
     params = get_params()
     state = params.get('state')
 
     if ('state' not in login_session) or ('state' in login_session and login_session['state'] != state):
-        # Insert error condition. User not logged in or state != session state (manual /auth call)
-        pass
+        logging.debug(f'ERROR: Invalid state: {state}')
+        return
 
     code = params.get('code')
     json_response = ttv_get_auth_token(load_client_id(), load_client_secret(), code)
@@ -52,6 +54,7 @@ def get_auth_token():
     return
 
 
+# Clear cookie data
 def user_disconnect():
     logging.debug("Received Logout Request")
     if 'state' in login_session:
